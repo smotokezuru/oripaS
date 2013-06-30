@@ -71,7 +71,7 @@ public class OriLine {
 		}
 	};
 
-	private Type type = Type.NONE;
+	//private Type type = Type.NONE;
 	
     public boolean selected;
     public int typeVal = TYPE_NONE;  // eventually unneeded
@@ -82,12 +82,12 @@ public class OriLine {
     }
 
     public void setTypeValue(int type) { // eventually unneeded
-    	this.type = Type.fromInt(type);
+    	//this.type = Type.fromInt(type);
         this.typeVal = type;
     }
     
     public void setType(Type type){
-    	this.type = type;
+    	//this.type = type;
     	this.typeVal = type.toInt(); // eventually unneeded
     }
 

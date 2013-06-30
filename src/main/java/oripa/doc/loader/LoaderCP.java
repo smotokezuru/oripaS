@@ -48,27 +48,25 @@ public class LoaderCP implements Loader{
             st.whitespaceChars('\n', '\n');
             st.whitespaceChars('\r', '\r');
 
-            int token;
-
             OriLine line;
-            while ((token = st.nextToken()) != StreamTokenizer.TT_EOF) {
+            while ((st.nextToken()) != StreamTokenizer.TT_EOF) {
                 line = new OriLine();
                 lines.add(line);
 
                 line.typeVal = Integer.parseInt(st.sval);// == 1 ? OriLine.TYPE_RIDGE : OriLine.TYPE_VALLEY;
                 System.out.println("line type " + line.typeVal);
 
-                token = st.nextToken();
+                st.nextToken();
                 line.p0.x = Double.parseDouble(st.sval);
 
-                token = st.nextToken();
+                st.nextToken();
                 line.p0.y = Double.parseDouble(st.sval);
 
 
-                token = st.nextToken();
+                st.nextToken();
                 line.p1.x = Double.parseDouble(st.sval);
 
-                token = st.nextToken();
+                st.nextToken();
                 line.p1.y = Double.parseDouble(st.sval);
 
             }

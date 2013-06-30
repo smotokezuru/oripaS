@@ -30,8 +30,6 @@ public class FileChooser extends JFileChooser {
 	
 	public FileChooser(String path) {
 		super(path);
-		String trimmedPath = replaceExtension(path, "");
-		
 
 //		File file = new File(trimmedPath);
 		File file = new File(path);

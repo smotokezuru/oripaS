@@ -1,8 +1,6 @@
 package oripa.doc.core;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.HashSet;
 import java.util.LinkedList;
 

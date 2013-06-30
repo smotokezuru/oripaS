@@ -54,7 +54,7 @@ public class RenderScreenForCheck extends JPanel
     private double transY;
     // Temporary information when editing
     private ArrayList<Vector2d> tmpOutline = new ArrayList<>(); // Contour line in the edit
-    private boolean dispGrid = true;
+//    private boolean dispGrid = true;
     // Affine transformation information
     private Dimension preSize;
     private AffineTransform affineTransform = new AffineTransform();
@@ -240,7 +240,7 @@ public class RenderScreenForCheck extends JPanel
     }
 
     public void setDispGrid(boolean dispGrid) {
-        this.dispGrid = dispGrid;
+//        this.dispGrid = dispGrid;
         resetPickElements();
         repaint();
     }

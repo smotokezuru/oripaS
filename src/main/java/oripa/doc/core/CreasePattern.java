@@ -3,7 +3,6 @@ package oripa.doc.core;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 import javax.vecmath.Vector2d;
 

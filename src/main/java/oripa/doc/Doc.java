@@ -23,8 +23,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 import javax.vecmath.Vector2d;
@@ -846,7 +844,7 @@ public class Doc {
 			}
 			Vector2d p = v.p;
 			double oddSum = 0;
-			double evenSum = 0;
+//			double evenSum = 0;
 			boolean isCorner = false;
 			for (int i = 0; i < v.edges.size(); i++) {
 				OriEdge e = v.edges.get(i);
@@ -864,7 +862,7 @@ public class Doc {
 				if (i % 2 == 0) {
 					oddSum += preP.angle(nxtP);
 				} else {
-					evenSum += preP.angle(nxtP);
+//					evenSum += preP.angle(nxtP);
 				}
 			}
 
@@ -1288,7 +1286,7 @@ public class Doc {
 		crossLines.clear();
 		for (OriFace face : sortedFaces) {
 			ArrayList<Vector2d> vv = new ArrayList<Vector2d>();
-			int crossCount = 0;
+//			int crossCount = 0;
 			for (OriHalfedge he : face.halfedges) {
 				OriLine l = new OriLine(he.positionForDisplay.x, he.positionForDisplay.y,
 						he.next.positionForDisplay.x, he.next.positionForDisplay.y, Globals.inputLineType);
@@ -1297,7 +1295,7 @@ public class Doc {
 				boolean res = GeomUtil.getCrossPointParam(line.p0, line.p1, l.p0, l.p1, params);
 				if (res == true && params[0] > -0.001 && params[1] > -0.001 && params[0] < 1.001 && params[1] < 1.001) {
 					double param = params[1];
-					crossCount++;
+//					crossCount++;
 
 					Vector2d crossV = new Vector2d();
 					crossV.x = (1.0 - param) * he.vertex.preP.x + param * he.next.vertex.preP.x;

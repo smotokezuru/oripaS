@@ -583,9 +583,9 @@ public class Folder {
             localSubFaces.add(new SubFace(face));
         }
 
-        int cnt = 0;
+//        int cnt = 0;
         for (SubFace sub : localSubFaces) {
-            cnt++;
+//            cnt++;
             Vector2d innerPoint = sub.getInnerPoint();
             for (OriFace face : m_doc.faces) {
                 if (GeomUtil.isContainsPointFoldedFace(face, innerPoint, m_doc.size / 1000)) {
@@ -748,7 +748,7 @@ public class Folder {
 
     //creates the matrix overlapRelation and fills it with "no overlap" or "undifined"
     private void setOverlapRelation() {
-        int overlapCount = 0;
+//        int overlapCount = 0;
         int size = m_doc.faces.size();
         m_doc.overlapRelation = new int[size][size];
         for (int i = 0; i < size; i++) {
@@ -757,7 +757,7 @@ public class Folder {
                 if (GeomUtil.isFaceOverlap(m_doc.faces.get(i), m_doc.faces.get(j), size * 0.00001)) {
                     m_doc.overlapRelation[i][j] = Doc.UNDEFINED;
                     m_doc.overlapRelation[j][i] = Doc.UNDEFINED;
-                    overlapCount++;
+//                    overlapCount++;
                 } else {
                     m_doc.overlapRelation[i][j] = Doc.NO_OVERLAP;
                     m_doc.overlapRelation[j][i] = Doc.NO_OVERLAP;

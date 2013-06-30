@@ -2,13 +2,9 @@ package oripa.paint.copypaste;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 
 import javax.vecmath.Vector2d;
 
@@ -18,13 +14,12 @@ import oripa.paint.EditMode;
 import oripa.paint.GraphicMouseAction;
 import oripa.paint.PaintContext;
 import oripa.paint.geometry.GeometricOperation;
-import oripa.paint.geometry.NearestPoint;
 import oripa.paint.geometry.NearestVertexFinder;
 
 public class PasteAction extends GraphicMouseAction {
 
 
-	private FilledOriLineArrayList shiftedLines = new FilledOriLineArrayList(0);
+//	private FilledOriLineArrayList shiftedLines = new FilledOriLineArrayList(0);
 
 	private OriginHolder originHolder = OriginHolder.getInstance();
 
@@ -51,7 +46,7 @@ public class PasteAction extends GraphicMouseAction {
 			}
 		}
 
-		shiftedLines = new FilledOriLineArrayList(context.getLines());
+//		shiftedLines = new FilledOriLineArrayList(context.getLines());
 
 	}
 

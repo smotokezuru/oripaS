@@ -287,10 +287,10 @@ public class GeomUtil {
         double y1 = line.p1.y;
         double px = v.x;
         double py = v.y;
-        Vector2d sub0, sub1, sub, sub0b;
+        Vector2d sub0, sub, sub0b;
 
         sub0 = new Vector2d(x0 - px, y0 - py);
-        sub1 = new Vector2d(x1 - px, y1 - py);
+        
         sub0b = new Vector2d(-sub0.x, -sub0.y);
         sub = new Vector2d(x1 - x0, y1 - y0);
 
@@ -377,7 +377,7 @@ public class GeomUtil {
             // Lines intersect in a single point.  Return both s and t values for
             // use by calling functions.
             double invDet = 1.0 / det;
-            double s = (d1.x * diff.y - d1.y * diff.x) * invDet;
+//            double s = (d1.x * diff.y - d1.y * diff.x) * invDet;
             double t = (d0.x * diff.y - d0.y * diff.x) * invDet;
 
             Vector2d cp = new Vector2d();
