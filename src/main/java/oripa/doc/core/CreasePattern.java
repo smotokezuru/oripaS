@@ -10,12 +10,6 @@ import oripa.geom.OriLine;
 
 public class CreasePattern implements Collection<OriLine> {
 	
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6919017534440930379L;
-
 	private LinkedList<OriLine> lines;
 	private VerticesManager vertices;
 	

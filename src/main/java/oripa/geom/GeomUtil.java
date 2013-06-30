@@ -672,34 +672,34 @@ public class GeomUtil {
         return true;
     }
 
-    private static int whichSide(Triangle tri, Vector2d P, Vector2d D) {
-
-        // Vertices are projected to the form P+t*D.  Return value is +1 if all
-        // t > 0, -1 if all t < 0, 0 otherwise, in which case the line splits the
-        // triangle.
-
-        int iPositive = 0, iNegative = 0, iZero = 0;
-
-        for (int i = 0; i < 3; i++) {
-            Vector2d vi_p = new Vector2d();
-            vi_p.set(tri.p[i].x - P.x, tri.p[i].y - P.y);
-            double fT = D.dot(vi_p);
-
-            if (fT > 0.0f) {
-                iPositive++;
-            } else if (fT < 0.0f) {
-                iNegative++;
-            } else {
-                iZero++;
-            }
-
-            if (iPositive > 0 && iNegative > 0) {
-                return 0;
-            }
-        }
-
-        return (iZero == 0 ? (iPositive > 0 ? 1 : -1) : 0);
-    }
+//    private static int whichSide(Triangle tri, Vector2d P, Vector2d D) {
+//
+//        // Vertices are projected to the form P+t*D.  Return value is +1 if all
+//        // t > 0, -1 if all t < 0, 0 otherwise, in which case the line splits the
+//        // triangle.
+//
+//        int iPositive = 0, iNegative = 0, iZero = 0;
+//
+//        for (int i = 0; i < 3; i++) {
+//            Vector2d vi_p = new Vector2d();
+//            vi_p.set(tri.p[i].x - P.x, tri.p[i].y - P.y);
+//            double fT = D.dot(vi_p);
+//
+//            if (fT > 0.0f) {
+//                iPositive++;
+//            } else if (fT < 0.0f) {
+//                iNegative++;
+//            } else {
+//                iZero++;
+//            }
+//
+//            if (iPositive > 0 && iNegative > 0) {
+//                return 0;
+//            }
+//        }
+//
+//        return (iZero == 0 ? (iPositive > 0 ? 1 : -1) : 0);
+//    }
 
     
     public static boolean isFaceOverlap(OriFace face0, OriFace face1, double eps) {
