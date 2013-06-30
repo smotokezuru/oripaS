@@ -66,7 +66,7 @@ public class MainScreen extends JPanel
 	implements MouseListener, MouseMotionListener, MouseWheelListener, 
 	ActionListener, ComponentListener, Observer{
 
-
+	private static final long serialVersionUID = -8646780897295400886L;
 	private MainScreenSettingDB setting = MainScreenSettingDB.getInstance();
 	private ScreenUpdater screenUpdater = ScreenUpdater.getInstance();
 	private PaintContext mouseContext = PaintContext.getInstance();

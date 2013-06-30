@@ -85,7 +85,7 @@ import oripa.viewsetting.uipanel.UIPanelSettingDB;
 public class UIPanel extends JPanel 
 implements ActionListener, PropertyChangeListener, Observer {
 
-
+	private static final long serialVersionUID = -1179840978177401467L;
 	private UIPanelSettingDB settingDB = UIPanelSettingDB.getInstance();
 	ResourceHolder resources = ResourceHolder.getInstance();
 

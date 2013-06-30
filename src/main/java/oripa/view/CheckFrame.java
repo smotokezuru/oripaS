@@ -24,8 +24,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class CheckFrame extends JFrame implements ActionListener {
-
-    RenderScreenForCheck screen;
+	private static final long serialVersionUID = -4457629710881755710L;
+	RenderScreenForCheck screen;
 
     public CheckFrame() {
         // Called when the "Check window" button is pressed.

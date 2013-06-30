@@ -48,7 +48,8 @@ import oripa.geom.TriangleVertex;
 public class RenderScreen2 extends JPanel
         implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-    private BufferedImage bufferImage;
+	private static final long serialVersionUID = -6869392820091038248L;
+	private BufferedImage bufferImage;
     private Graphics2D bufferg;
     static private int pbuf[];      //32bit pixel buffer
     static private int zbuf[];      //32bit z buffer

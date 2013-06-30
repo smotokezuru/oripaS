@@ -46,7 +46,8 @@ import oripa.paint.Globals;
 public class RenderScreenForCheck extends JPanel
         implements ComponentListener {
 
-    private boolean bDrawFaceID = false;
+	private static final long serialVersionUID = 2078033414242783590L;
+	private boolean bDrawFaceID = false;
     private Image bufferImage;
     private Graphics2D bufferg;
     private double scale;

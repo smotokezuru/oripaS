@@ -51,6 +51,8 @@ import oripa.viewsetting.model.ModelFrameSettingDB;
 public class ModelViewFrame extends JFrame 
 implements ActionListener, AdjustmentListener, Observer{
 
+	private static final long serialVersionUID = 6761618858325349454L;
+
 	private ModelFrameSettingDB setting = ModelFrameSettingDB.getInstance();
 
     ModelViewScreen screen;

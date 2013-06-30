@@ -52,7 +52,8 @@ import oripa.resource.Constants;
 public class ModelViewScreen extends JPanel
         implements MouseListener, MouseMotionListener, MouseWheelListener, ActionListener, ComponentListener {
 
-    private Image bufferImage;
+	private static final long serialVersionUID = -1926258059980071746L;
+	private Image bufferImage;
     private Graphics2D bufferg;
     private Point2D preMousePoint; // Screen coordinates
     private Point2D.Double currentMousePointLogic = new Point2D.Double(); // Logical coordinates

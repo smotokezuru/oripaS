@@ -26,7 +26,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class ModelViewFrame3D extends JFrame implements ActionListener {
-    ModelViewScreen3D screen;
+	private static final long serialVersionUID = -5233943894647183576L;
+	ModelViewScreen3D screen;
 
     public ModelViewFrame3D() {
         setTitle("3D Origami Model Rendering");

@@ -55,7 +55,8 @@ class J3DFace {
 public class ModelViewScreen3D extends Canvas3D implements MouseListener, MouseMotionListener, MouseWheelListener,
         ComponentListener {
 
-    ArrayList<J3DFace> faces = new ArrayList<>();
+	private static final long serialVersionUID = -2950084287754591097L;
+	ArrayList<J3DFace> faces = new ArrayList<>();
     TransformGroup objTrans = new TransformGroup();
     Appearance mainAppearance = new Appearance();
     SimpleUniverse universe;

@@ -32,6 +32,8 @@ import oripa.viewsetting.render.RenderFrameSettingDB;
 
 public class RenderFrame extends JFrame implements ActionListener, Observer {
 
+	private static final long serialVersionUID = -1925954303540298297L;
+
 	private RenderFrameSettingDB setting = RenderFrameSettingDB.getInstance();
 
 	RenderScreen2 screen;

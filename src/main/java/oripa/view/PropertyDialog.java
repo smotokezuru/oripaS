@@ -27,7 +27,8 @@ import oripa.ORIPA;
 
 public class PropertyDialog extends JDialog implements ComponentListener {
 
-    private JPanel jContentPane = null;
+	private static final long serialVersionUID = 427753479379822465L;
+	private JPanel jContentPane = null;
     private JLabel jLabel = null;
     public JTextField TitleTextField = null;
     private JLabel jLabel1 = null;
