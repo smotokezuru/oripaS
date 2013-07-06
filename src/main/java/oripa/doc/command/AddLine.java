@@ -15,29 +15,6 @@ import oripa.geom.GeomUtil;
 import oripa.geom.OriLine;
 
 public class AddLine {
-	class PointComparatorX implements Comparator<Vector2d> {
-
-		@Override
-		public int compare(Vector2d v1, Vector2d v2) {
-			if(v1.x == v2.x){
-				return 0;
-			}
-			return v1.x > v2.x ? 1 : -1;
-		}
-	}
-
-	class PointComparatorY implements Comparator<Vector2d> {
-
-		@Override
-		public int compare(Vector2d v1, Vector2d v2) {
-			if(v1.y == v2.y){
-				return 0;
-			}
-			return ((Vector2d) v1).y > ((Vector2d) v2).y ? 1 : -1;
-		}
-	}
-
-
 	/**
 	 * 
 	 * @param inputLine
@@ -154,9 +131,23 @@ public class AddLine {
 		// sort in order to make points sequential
 		boolean sortByX = Math.abs(inputLine.p0.x - inputLine.p1.x) > Math.abs(inputLine.p0.y - inputLine.p1.y);
 		if (sortByX) {
-			Collections.sort(points, new PointComparatorX());
+			Collections.sort(points, new Comparator<Vector2d>() {
+				@Override
+				public int compare(Vector2d v1, Vector2d v2) {
+					if(v1.x == v2.x)
+						return 0;
+					return v1.x > v2.x ? 1 : -1;
+				}
+			});
 		} else {
-			Collections.sort(points, new PointComparatorY());
+			Collections.sort(points, new Comparator<Vector2d>() {
+				@Override
+				public int compare(Vector2d v1, Vector2d v2) {
+					if(v1.y == v2.y)
+						return 0;
+					return ((Vector2d) v1).y > ((Vector2d) v2).y ? 1 : -1;
+				}
+			});
 		}
 
 		Vector2d prePoint = points.get(0);

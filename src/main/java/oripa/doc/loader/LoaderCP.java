@@ -22,6 +22,8 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.vecmath.Vector2d;
 
 import oripa.doc.Doc;
@@ -29,7 +31,7 @@ import oripa.geom.OriLine;
 
 public class LoaderCP implements Loader{
 
-    public ArrayList<OriLine> lines = new ArrayList<>();
+    public List<OriLine> lines = new ArrayList<>();
 
     public Doc load(String filePath) {
         Vector2d minV = new Vector2d(Double.MAX_VALUE, Double.MAX_VALUE);

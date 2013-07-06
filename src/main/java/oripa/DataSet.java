@@ -26,13 +26,13 @@ public class DataSet {
 
     private int mainVersion;
     private int subVersion;
-    public OriLineProxy[] lines;
+    private OriLineProxy[] lines;
     private double paperSize;
-    public String title;
-    public String editorName;
-    public String originalAuthorName;
-    public String reference;
-    public String memo;
+    private String title;
+    private String editorName;
+    private String originalAuthorName;
+    private String reference;
+    private String memo;
 
     public DataSet() {
     }

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.vecmath.Vector2d;
@@ -78,19 +79,19 @@ public class Doc {
 	}
 
 
-	public ArrayList<OriLine> crossLines = new ArrayList<OriLine>();
+	public List<OriLine> crossLines = new ArrayList<OriLine>();
 //	public ArrayList<OriLine> lines = new ArrayList<OriLine>();
 	public CreasePattern creasePattern = null;
 
-	public ArrayList<OriFace> faces = new ArrayList<OriFace>();
-	public ArrayList<OriVertex> vertices = new ArrayList<OriVertex>();
-	public ArrayList<OriEdge> edges = new ArrayList<OriEdge>();
+	public List<OriFace> faces = new ArrayList<OriFace>();
+	public List<OriVertex> vertices = new ArrayList<OriVertex>();
+	public List<OriEdge> edges = new ArrayList<OriEdge>();
 	//    public ArrayList<OriLine> tmpSelectedLines = new ArrayList<OriLine>();
 	public boolean isValidPattern = false;
 	public double size;
 	public boolean hasModel = false;
 	public boolean bFolded = false;
-	public ArrayList<OriFace> sortedFaces = new ArrayList<OriFace>();
+	public List<OriFace> sortedFaces = new ArrayList<OriFace>();
 	boolean bOutLog = true;
 	public String dataFilePath = "";
 	final public static int NO_OVERLAP = 0;
@@ -98,7 +99,7 @@ public class Doc {
 	final public static int LOWER = 2;
 	final public static int UNDEFINED = 9;
 	public int overlapRelation[][];
-	public ArrayList<int[][]> overlapRelations = new ArrayList<int[][]>();
+	public List<int[][]> overlapRelations = new ArrayList<int[][]>();
 	public int currentORmatIndex;
 	public String title;
 	public String editorName;
