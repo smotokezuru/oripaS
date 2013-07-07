@@ -11,7 +11,7 @@ import oripa.doc.DocHolder;
 import oripa.geom.OriFace;
 import oripa.geom.OriHalfedge;
 import oripa.geom.OriLine;
-import oripa.view.RenderScreen2;
+import oripa.view.render.RenderScreen2;
 
 public class ExporterSVG implements Exporter{
 

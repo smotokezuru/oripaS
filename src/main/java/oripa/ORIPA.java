@@ -29,11 +29,11 @@ import javax.swing.JOptionPane;
 import oripa.resource.ResourceHolder;
 import oripa.resource.ResourceKey;
 import oripa.resource.StringID;
-import oripa.view.CheckFrame;
-import oripa.view.ModelViewFrame;
-import oripa.view.ModelViewFrame3D;
-import oripa.view.RenderFrame;
+import oripa.view.check.CheckFrame;
 import oripa.view.main.MainFrame;
+import oripa.view.render.RenderFrame;
+import oripa.view.xray.XRayFrame;
+import oripa.view.xray3d.XRay3dFrame;
 
 
 public class ORIPA {
@@ -41,7 +41,7 @@ public class ORIPA {
     public static String TITLE;
     
     public static MainFrame mainFrame;
-    public static ModelViewFrame modelFrame;
+    public static XRayFrame modelFrame;
     public static String infoString = "ORIPA S: (c) 2012 OUCHI Koji\n" +
     		"http://github.com/Ooouch1\n" +
     		"ORIPA: (c) 2005-2009 Jun Mitani\nhttp://mitani.cs.tsukuba.ac.jp/\n\n"+
@@ -50,7 +50,7 @@ public class ORIPA {
             "under certain conditions; For details check:\nhttp://www.gnu.org/licenses/gpl.html";
  
     public static ResourceBundle res;
-    public static ModelViewFrame3D modelFrame3D;
+    public static XRay3dFrame modelFrame3D;
     public static int tmpInt;
     public static RenderFrame renderFrame;
     ;
@@ -109,7 +109,7 @@ public class ORIPA {
         mainFrame.setVisible(true);
 
         // Expected folded origami frame (x-ray)
-        modelFrame = new ModelViewFrame();
+        modelFrame = new XRayFrame();
         modelFrame.setBounds(originX + (appTotalWidth - modelFrameWidth) / 2, originY + (appTotalHeight - modelFrameHeight) / 2,
                 modelFrameWidth, modelFrameHeight);
         modelFrame.setVisible(false);
@@ -125,7 +125,7 @@ public class ORIPA {
 
 
         if (Config.FOR_STUDY) {
-            modelFrame3D = new ModelViewFrame3D();
+            modelFrame3D = new XRay3dFrame();
             modelFrame3D.setBounds(0, 0,
                     modelFrameWidth * 2, modelFrameHeight * 2);
             modelFrame3D.setVisible(true);

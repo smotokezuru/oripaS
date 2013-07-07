@@ -65,8 +65,6 @@ import oripa.resource.Constants;
 import oripa.resource.ResourceHolder;
 import oripa.resource.ResourceKey;
 import oripa.resource.StringID;
-import oripa.view.PropertyDialog;
-import oripa.view.uipanel.UIPanel;
 import oripa.viewsetting.main.MainFrameSettingDB;
 import oripa.viewsetting.main.MainScreenSettingDB;
 
@@ -83,7 +81,7 @@ public class MainFrame extends JFrame implements ActionListener,
 	private MainScreenSettingDB screenSetting = MainScreenSettingDB.getInstance();
 	private PaintContext mouseContext = PaintContext.getInstance();
 
-	MainScreen mainScreen;
+	CreasePatternPanel creasePatternPanel;
 	private JMenu menuFile = new JMenu(
 			ORIPA.res.getString(StringID.Main.FILE_ID));
 	private JMenu menuEdit = new JMenu(ORIPA.res.getString("Edit"));
@@ -155,7 +153,7 @@ public class MainFrame extends JFrame implements ActionListener,
 	private RepeatCopyDialog arrayCopyDialog;
 	private CircleCopyDialog circleCopyDialog;
 	public static JLabel hintLabel = new JLabel();
-	public UIPanel uiPanel;
+	public ControlPanel uiPanel;
 
 	private FileHistory fileHistory = new FileHistory(Config.MRUFILE_NUM);
 
@@ -176,12 +174,12 @@ public class MainFrame extends JFrame implements ActionListener,
 				ResourceKey.LABEL, StringID.CUT_PASTE_ID));
 		// menuItemChangeOutline.setText(ORIPA.res.getString(StringID.Menu.CONTOUR_ID));
 
-		mainScreen = new MainScreen();
+		creasePatternPanel = new CreasePatternPanel();
 		addWindowListener(this);
-		uiPanel = new UIPanel(mainScreen);
+		uiPanel = new ControlPanel(creasePatternPanel);
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(uiPanel, BorderLayout.WEST);
-		getContentPane().add(mainScreen, BorderLayout.CENTER);
+		getContentPane().add(creasePatternPanel, BorderLayout.CENTER);
 		getContentPane().add(hintLabel, BorderLayout.SOUTH);
 
 		ImageResourceLoader imgLoader = new ImageResourceLoader();
@@ -233,7 +231,7 @@ public class MainFrame extends JFrame implements ActionListener,
 						Doc doc = DocHolder.getInstance().getDoc();
 						doc.resetSelectedOriLines();
 						mouseContext.clear(false);
-						mainScreen.repaint();
+						creasePatternPanel.repaint();
 					}
 				});
 
@@ -286,7 +284,7 @@ public class MainFrame extends JFrame implements ActionListener,
 			@Override
 			public boolean save(String path) {
 				try {
-					savePictureFile(mainScreen.getCreasePatternImage(), path);
+					savePictureFile(creasePatternPanel.getCreasePatternImage(), path);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -357,7 +355,7 @@ public class MainFrame extends JFrame implements ActionListener,
 							ORIPA.res.getString("Error_FileLoadFailed"),
 							JOptionPane.ERROR_MESSAGE);
 				}
-				mainScreen.repaint();
+				creasePatternPanel.repaint();
 				return;
 			}
 		}
@@ -367,7 +365,7 @@ public class MainFrame extends JFrame implements ActionListener,
 
 		if (e.getSource() == menuItemOpen) {
 			openFile(null);
-			mainScreen.repaint();
+			creasePatternPanel.repaint();
 			updateTitleText();
 		} else if (e.getSource() == menuItemSave
 				&& !doc.dataFilePath.equals("")) {
@@ -410,7 +408,7 @@ public class MainFrame extends JFrame implements ActionListener,
 			} else {
 				doc.loadUndoInfo();
 			}
-			mainScreen.repaint();
+			creasePatternPanel.repaint();
 		} else if (e.getSource() == menuItemClear) {
 			doc = new Doc(Constants.DEFAULT_PAPER_SIZE);
 			ORIPA.modelFrame.repaint();

@@ -16,28 +16,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package oripa.view;
+package oripa.view.check;
 
-import com.sun.j3d.utils.universe.SimpleUniverse;
 import java.awt.BorderLayout;
-import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 
-public class ModelViewFrame3D extends JFrame implements ActionListener {
-	private static final long serialVersionUID = -5233943894647183576L;
-	ModelViewScreen3D screen;
+public class CheckFrame extends JFrame implements ActionListener {
+	private static final long serialVersionUID = -4457629710881755710L;
+	RenderScreenForCheck screen;
 
-    public ModelViewFrame3D() {
-        setTitle("3D Origami Model Rendering");
-        GraphicsConfiguration config = SimpleUniverse.getPreferredConfiguration();
-        screen = new ModelViewScreen3D(config);
-        
+    public CheckFrame() {
+        // Called when the "Check window" button is pressed.
+        setTitle("Check Inputed data");
+        screen = new RenderScreenForCheck();
+        setBounds(0, 0, 800, 800);
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(screen, BorderLayout.CENTER);
+
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent arg0) {
         // TODO Auto-generated method stub

@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package oripa.view.uipanel;
+package oripa.view.main;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -71,7 +71,6 @@ import oripa.paint.byvalue.ValueDB;
 import oripa.resource.ResourceHolder;
 import oripa.resource.ResourceKey;
 import oripa.resource.StringID;
-import oripa.view.main.MainScreen;
 import oripa.viewsetting.ChangeViewSetting;
 import oripa.viewsetting.ViewChangeListener;
 import oripa.viewsetting.main.MainScreenSettingDB;
@@ -84,7 +83,7 @@ import oripa.viewsetting.uipanel.FromLineTypeItemListener;
 import oripa.viewsetting.uipanel.ToLineTypeItemListener;
 import oripa.viewsetting.uipanel.UIPanelSettingDB;
 
-public class UIPanel extends JPanel 
+public class ControlPanel extends JPanel 
 implements ActionListener, PropertyChangeListener, Observer {
 
 	private static final long serialVersionUID = -1179840978177401467L;
@@ -212,7 +211,7 @@ implements ActionListener, PropertyChangeListener, Observer {
 			resources.getString(ResourceKey.LABEL, StringID.UI.FULL_ESTIMATION_ID), false);
 	JButton buttonCheckWindow = new JButton(
 			resources.getString(ResourceKey.LABEL, StringID.UI.CHECK_WINDOW_ID));
-	MainScreen screen;
+	CreasePatternPanel screen;
 
 
 	//	private PaintContext context = PaintContext.getInstance();
@@ -220,7 +219,7 @@ implements ActionListener, PropertyChangeListener, Observer {
 
 
 
-	public UIPanel(MainScreen __screen) {
+	public ControlPanel(CreasePatternPanel __screen) {
 
 		//setModeButtonText();
 		editModeInputLineButton.setSelected(true);

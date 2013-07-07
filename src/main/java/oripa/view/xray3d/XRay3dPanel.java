@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package oripa.view;
+package oripa.view.xray3d;
 
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
@@ -55,7 +55,7 @@ class J3DFace {
     }
 }
 
-public class ModelViewScreen3D extends Canvas3D implements MouseListener, MouseMotionListener, MouseWheelListener,
+public class XRay3dPanel extends Canvas3D implements MouseListener, MouseMotionListener, MouseWheelListener,
         ComponentListener {
 
 	private static final long serialVersionUID = -2950084287754591097L;
@@ -69,7 +69,7 @@ public class ModelViewScreen3D extends Canvas3D implements MouseListener, MouseM
     Color3f faceColorBack = new Color3f(0.8f, 0.8f, 1.0f);
     Color3f faceColorSelected = new Color3f(Color.RED);
 
-    public ModelViewScreen3D(GraphicsConfiguration config) {
+    public XRay3dPanel(GraphicsConfiguration config) {
         super(config);
 
         scene = createSceneGraph();

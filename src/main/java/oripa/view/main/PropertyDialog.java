@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package oripa.view;
+package oripa.view.main;
 
 import java.awt.GridBagConstraints;
 import java.awt.event.ComponentEvent;

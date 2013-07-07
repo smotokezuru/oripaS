@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package oripa.view;
+package oripa.view.xray;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -50,14 +50,14 @@ import oripa.paint.Globals;
 import oripa.resource.Constants;
 import oripa.viewsetting.model.ModelFrameSettingDB;
 
-public class ModelViewFrame extends JFrame 
+public class XRayFrame extends JFrame 
 implements ActionListener, AdjustmentListener, Observer{
 
 	private static final long serialVersionUID = 6761618858325349454L;
 
 	private ModelFrameSettingDB setting = ModelFrameSettingDB.getInstance();
 
-    ModelViewScreen screen;
+    XRayPanel screen;
     private JMenu menuDisp = new JMenu(ORIPA.res.getString("MENU_Disp"));
     private JMenu menuFile = new JMenu(ORIPA.res.getString("File"));
     private JMenuItem menuItemExportDXF = new JMenuItem(ORIPA.res.getString("MENU_ExportModelLine_DXF"));
@@ -74,12 +74,12 @@ implements ActionListener, AdjustmentListener, Observer{
     private JScrollBar scrollBarAngle = new JScrollBar(JScrollBar.HORIZONTAL, 90, 5, 0, 185);
     private JScrollBar scrollBarPosition = new JScrollBar(JScrollBar.VERTICAL, 0, 5, -150, 150);
 
-    public ModelViewFrame() {
+    public XRayFrame() {
     	
     	setting.addObserver(this);
     	
         setTitle(ORIPA.res.getString("ExpectedFoldedOrigami"));
-        screen = new ModelViewScreen();
+        screen = new XRayPanel();
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(screen, BorderLayout.CENTER);

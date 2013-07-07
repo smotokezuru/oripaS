@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package oripa.view;
+package oripa.view.xray;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -51,7 +51,7 @@ import oripa.geom.OriLine;
 import oripa.paint.Globals;
 import oripa.resource.Constants;
 
-public class ModelViewScreen extends JPanel
+public class XRayPanel extends JPanel
         implements MouseListener, MouseMotionListener, MouseWheelListener, ActionListener, ComponentListener {
 
 	private static final long serialVersionUID = -1926258059980071746L;
@@ -71,7 +71,7 @@ public class ModelViewScreen extends JPanel
     private int crossLineAngleDegree = 90;
     private double crossLinePosition = 0;
 
-    public ModelViewScreen() {
+    public XRayPanel() {
         addMouseListener(this);
         addMouseMotionListener(this);
         addMouseWheelListener(this);

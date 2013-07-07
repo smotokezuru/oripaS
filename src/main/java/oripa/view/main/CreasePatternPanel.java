@@ -63,7 +63,7 @@ import oripa.viewsetting.main.MainScreenSettingDB;
 import oripa.viewsetting.main.ScreenUpdater;
 
 
-public class MainScreen extends JPanel
+public class CreasePatternPanel extends JPanel
 	implements MouseListener, MouseMotionListener, MouseWheelListener, 
 	ActionListener, ComponentListener, Observer{
 
@@ -89,7 +89,7 @@ public class MainScreen extends JPanel
 	private JMenuItem popupItem_DivideFace = new JMenuItem("Dividing face");
 	private JMenuItem popupItem_FlipFace = new JMenuItem("Flipping face");
 
-	public MainScreen() {
+	public CreasePatternPanel() {
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		addMouseWheelListener(this);

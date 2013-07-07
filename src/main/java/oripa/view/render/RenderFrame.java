@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package oripa.view;
+package oripa.view.render;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
