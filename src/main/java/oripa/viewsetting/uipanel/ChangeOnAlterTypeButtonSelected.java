@@ -1,10 +1,11 @@
 package oripa.viewsetting.uipanel;
 
-import oripa.viewsetting.ChangeViewSetting;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ChangeOnAlterTypeButtonSelected implements ChangeViewSetting{
+public class ChangeOnAlterTypeButtonSelected implements ActionListener{
 	@Override
-	public void changeViewSetting() {
+	public void actionPerformed(ActionEvent e) {
 		UIPanelSettingDB setting = UIPanelSettingDB.getInstance();
 		
 		setting.setValuePanelVisible(false);
@@ -18,5 +19,4 @@ public class ChangeOnAlterTypeButtonSelected implements ChangeViewSetting{
 		setting.notifyObservers();
 
 	}
-
 }

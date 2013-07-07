@@ -1,11 +1,12 @@
 package oripa.viewsetting.uipanel;
 
-import oripa.viewsetting.ChangeViewSetting;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ChangeOnOtherCommandButtonSelected implements ChangeViewSetting{
+public class ChangeOnOtherCommandButtonSelected implements ActionListener{
 
 	@Override
-	public void changeViewSetting() {
+	public void actionPerformed(ActionEvent e) {
 		UIPanelSettingDB setting = UIPanelSettingDB.getInstance();
 		
 		setting.setValuePanelVisible(false);

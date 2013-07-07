@@ -9,7 +9,6 @@ import oripa.appstate.StatePusher;
 import oripa.bind.state.action.PaintActionSetter;
 import oripa.paint.EditMode;
 import oripa.paint.GraphicMouseAction;
-import oripa.viewsetting.ViewChangeListener;
 import oripa.viewsetting.main.ChangeHint;
 
 /**
@@ -70,7 +69,7 @@ public class PaintBoundState extends ApplicationState<EditMode> {
 		
 		if(textID != null){
 			// add view updater
-			addAction(new ViewChangeListener(new ChangeHint(textID)));
+			addAction(new ChangeHint(textID));
 		}
 		
 	}

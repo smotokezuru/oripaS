@@ -71,8 +71,6 @@ import oripa.paint.byvalue.ValueDB;
 import oripa.resource.ResourceHolder;
 import oripa.resource.ResourceKey;
 import oripa.resource.StringID;
-import oripa.viewsetting.ChangeViewSetting;
-import oripa.viewsetting.ViewChangeListener;
 import oripa.viewsetting.main.MainScreenSettingDB;
 import oripa.viewsetting.main.ScreenUpdater;
 import oripa.viewsetting.model.ModelFrameSettingDB;
@@ -94,7 +92,7 @@ implements ActionListener, PropertyChangeListener, Observer {
 	//---------------------------------------------------------------------------------------------------------------------------
 	// Binding edit mode
 
-	private BinderInterface<ChangeViewSetting> viewChangeBinder = new ViewChangeBinder();
+	private BinderInterface<ActionListener> viewChangeBinder = new ViewChangeBinder();
 	private ButtonFactory buttonFactory = new PaintActionButtonFactory();
 
 	private JRadioButton editModeInputLineButton = (JRadioButton) viewChangeBinder.createButton(
@@ -570,13 +568,11 @@ implements ActionListener, PropertyChangeListener, Observer {
 
 		buttonLength.addActionListener(
 				new PaintActionSetter(new LengthMeasuringAction()));
-		buttonLength.addActionListener(
-				new ViewChangeListener(new ChangeOnByValueButtonSelected()));
+		buttonLength.addActionListener(new ChangeOnByValueButtonSelected());
 
 		buttonAngle.addActionListener(
 				new PaintActionSetter(new AngleMeasuringAction()));
-		buttonAngle.addActionListener(
-				new ViewChangeListener(new ChangeOnByValueButtonSelected()));
+		buttonAngle.addActionListener(new ChangeOnByValueButtonSelected());
 
 		lineTypeMountainButton.addActionListener(
 				new LineTypeSetter(OriLine.TYPE_RIDGE));

@@ -25,7 +25,6 @@ import oripa.paint.symmetric.SymmetricalLineAction;
 import oripa.paint.triangle.TriangleSplitAction;
 import oripa.paint.vertical.VerticalLineAction;
 import oripa.resource.StringID;
-import oripa.viewsetting.ViewChangeListener;
 import oripa.viewsetting.uipanel.ChangeOnAlterTypeButtonSelected;
 import oripa.viewsetting.uipanel.ChangeOnByValueButtonSelected;
 import oripa.viewsetting.uipanel.ChangeOnOtherCommandButtonSelected;
@@ -56,55 +55,55 @@ public class PaintBoundStateFactory {
 		case StringID.SELECT_ID:
 			state = stateFactory.create(
 					new SelectLineAction(context), id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnSelectButtonSelected())});
+					new ActionListener[] {new ChangeOnSelectButtonSelected()});
 			break;
 			
 		case StringID.DELETE_LINE_ID:
 			state =	stateFactory.create(
 					new DeleteLineAction(), id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnOtherCommandButtonSelected())});		 
+					new ActionListener[] {new ChangeOnOtherCommandButtonSelected()});		 
 			break;
 
 		case StringID.CHANGE_LINE_TYPE_ID:
 			state = stateFactory.create(
 					new ChangeLineTypeAction(), id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnAlterTypeButtonSelected())});
+					new ActionListener[] {new ChangeOnAlterTypeButtonSelected()});
 			break;
 			
 		case StringID.ADD_VERTEX_ID:
 			state =	stateFactory.create(new AddVertexAction(), id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnOtherCommandButtonSelected())});
+					new ActionListener[] {new ChangeOnOtherCommandButtonSelected()});
 			break;
 			
 		case StringID.DELETE_VERTEX_ID:
 			state =	stateFactory.create(new DeleteVertexAction(), id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnOtherCommandButtonSelected())});
+					new ActionListener[] {new ChangeOnOtherCommandButtonSelected()});
 			break;
 
 		case StringID.EDIT_CONTOUR_ID:
 			state = stateFactory.create(
 					new EditOutlineActionWrapper(),	id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnOtherCommandButtonSelected())});
+					new ActionListener[] {new ChangeOnOtherCommandButtonSelected()});
 			break;
 			
 		case StringID.SELECT_ALL_LINE_ID:
 			state = stateFactory.create(
 					new SelectAllLineAction(context), id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnSelectButtonSelected())});
+					new ActionListener[] {new ChangeOnSelectButtonSelected()});
 			break;
 			
 		case StringID.COPY_PASTE_ID:
 			state = stateFactory.create(
 					new CopyAndPasteActionWrapper(false),
 					new CopyPasteErrorListener(), id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnSelectButtonSelected())});
+					new ActionListener[] {new ChangeOnSelectButtonSelected()});
 			break;
 			
 		case StringID.CUT_PASTE_ID:
 			state = stateFactory.create(
 					new CopyAndPasteActionWrapper(true),
 					new CopyPasteErrorListener(), id, 
-					new ActionListener[] {new ViewChangeListener(new ChangeOnSelectButtonSelected())});
+					new ActionListener[] {new ChangeOnSelectButtonSelected()});
 			break;
 
 
@@ -125,8 +124,7 @@ public class PaintBoundStateFactory {
 
 		LocalPaintBoundStateFactory stateFactory = 
 				new LocalPaintBoundStateFactory(parent, 
-				new ActionListener[] {new ViewChangeListener(
-						new ChangeOnPaintInputButtonSelected())} );
+				new ActionListener[] {new ChangeOnPaintInputButtonSelected()} );
 
 
 		ApplicationState<EditMode> state = null;
@@ -170,7 +168,7 @@ public class PaintBoundStateFactory {
 
 		case StringID.BY_VALUE_ID:
 			LocalPaintBoundStateFactory byValueFactory = new LocalPaintBoundStateFactory(
-					parent, new ActionListener[] {new ViewChangeListener(new ChangeOnByValueButtonSelected())});
+					parent, new ActionListener[] {new ChangeOnByValueButtonSelected()});
 
 			state = byValueFactory.create(new LineByValueAction(), 
 					id,	null );

@@ -3,6 +3,8 @@ package oripa.bind.state;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.JRadioButton;
 
 import org.junit.Test;
@@ -15,7 +17,6 @@ import oripa.paint.EditMode;
 import oripa.resource.ResourceHolder;
 import oripa.resource.ResourceKey;
 import oripa.resource.StringID;
-import oripa.viewsetting.ChangeViewSetting;
 import oripa.viewsetting.uipanel.ChangeOnPaintInputButtonSelected;
 
 public class ButtonBinderTest {
@@ -23,7 +24,7 @@ public class ButtonBinderTest {
 	@Test
 	public void testCreate() {
 
-		BinderInterface<ChangeViewSetting> viewChangeBinder = new ViewChangeBinder();
+		BinderInterface<ActionListener> viewChangeBinder = new ViewChangeBinder();
 		BinderInterface<ApplicationState<EditMode>> paintBinder = new ApplicationStateButtonBinder();
 
 		//	JRadioButton editModeInputLineButton = new JRadioButton("InputLine", true);

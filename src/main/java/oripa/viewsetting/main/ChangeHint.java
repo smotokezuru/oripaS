@@ -1,12 +1,13 @@
 package oripa.viewsetting.main;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import oripa.resource.ResourceHolder;
 import oripa.resource.ResourceKey;
-import oripa.viewsetting.ChangeViewSetting;
 
-public class ChangeHint implements ChangeViewSetting {
+public class ChangeHint implements ActionListener {
 
 	private MainFrameSettingDB frameSetting = MainFrameSettingDB.getInstance();
 
@@ -17,7 +18,7 @@ public class ChangeHint implements ChangeViewSetting {
 	}
 	
 	@Override
-	public void changeViewSetting() {
+	public void actionPerformed(ActionEvent e) {
 		ResourceHolder holder = ResourceHolder.getInstance();
 		
 		ResourceBundle resource = holder.getResource(ResourceKey.EXPLANATION);
@@ -26,12 +27,11 @@ public class ChangeHint implements ChangeViewSetting {
 		try{
 			hint = resource.getString(id);
 		}
-		catch (Exception e) {
+		catch (Exception ex) {
 			//e.printStackTrace();
 		}
 		frameSetting.setHint(hint);
 		
 		frameSetting.notifyObservers();
 	}
-
 }
