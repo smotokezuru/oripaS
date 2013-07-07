@@ -43,7 +43,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -422,8 +422,8 @@ implements ActionListener, PropertyChangeListener, Observer {
 		textFieldLength.setValue(new java.lang.Double(0.0));
 		textFieldAngle.setValue(new java.lang.Double(0.0));
 
-		textFieldLength.setHorizontalAlignment(JTextField.RIGHT);
-		textFieldAngle.setHorizontalAlignment(JTextField.RIGHT);
+		textFieldLength.setHorizontalAlignment(SwingConstants.RIGHT);
+		textFieldAngle.setHorizontalAlignment(SwingConstants.RIGHT);
 
 		subPanel1.setLayout(new FlowLayout());
 		subPanel2.setLayout(new FlowLayout());
@@ -447,7 +447,7 @@ implements ActionListener, PropertyChangeListener, Observer {
 		textFieldGrid = new JFormattedTextField(new DecimalFormat("#"));
 		textFieldGrid.setColumns(2);
 		textFieldGrid.setValue(new Integer(Config.DEFAULT_GRID_DIV_NUM));
-		textFieldGrid.setHorizontalAlignment(JTextField.RIGHT);
+		textFieldGrid.setHorizontalAlignment(SwingConstants.RIGHT);
 		gridChangeButton.addActionListener(this);
 
 		divideNumSpecPanel.add(gridLabel1);

@@ -1,6 +1,7 @@
 package oripa.mouse;
 
 import java.awt.Point;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
@@ -9,8 +10,8 @@ import java.awt.geom.Point2D;
 public class MouseUtility {
 
 	public static boolean isControlButtonPressed(MouseEvent event){
-		return ((event.getModifiersEx() & MouseEvent.CTRL_DOWN_MASK) 
-				== MouseEvent.CTRL_DOWN_MASK);		
+		return ((event.getModifiersEx() & InputEvent.CTRL_DOWN_MASK) 
+				== InputEvent.CTRL_DOWN_MASK);		
 	}
 	
     public static Point2D.Double getLogicalPoint(AffineTransform affine, Point p){

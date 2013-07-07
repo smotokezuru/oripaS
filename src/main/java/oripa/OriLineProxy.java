@@ -19,6 +19,7 @@
 package oripa;
 
 import javax.vecmath.Vector2d;
+
 import oripa.geom.OriLine;
 
 public class OriLineProxy {

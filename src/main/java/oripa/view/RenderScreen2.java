@@ -209,7 +209,7 @@ public class RenderScreen2 extends JPanel
             boolean higherQuality) {
         int type = (img.getTransparency() == Transparency.OPAQUE)
                 ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
-        BufferedImage ret = (BufferedImage) img;
+        BufferedImage ret = img;
         int w, h;
         if (higherQuality) {
             // Use multi-step technique: start with original size, then
@@ -612,13 +612,13 @@ public class RenderScreen2 extends JPanel
     @Override
     public void mouseDragged(MouseEvent e) {
         if (javax.swing.SwingUtilities.isLeftMouseButton(e)) {
-            rotateAngle -= ((double) e.getX() - preMousePoint.getX()) / 100.0;
+            rotateAngle -= (e.getX() - preMousePoint.getX()) / 100.0;
             preMousePoint = e.getPoint();
             updateAffineTransform();
             repaint();
         }else if (javax.swing.SwingUtilities.isRightMouseButton(e)) {
-            transX += (double) (e.getX() - preMousePoint.getX()) / scale;
-            transY += (double) (e.getY() - preMousePoint.getY()) / scale;
+            transX += (e.getX() - preMousePoint.getX()) / scale;
+            transY += (e.getY() - preMousePoint.getY()) / scale;
             preMousePoint = e.getPoint();
             updateAffineTransform();
             repaint();

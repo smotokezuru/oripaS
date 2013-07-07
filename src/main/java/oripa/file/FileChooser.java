@@ -41,6 +41,7 @@ public class FileChooser extends JFileChooser {
 	/**
 	 * don't use this!
 	 */
+	@Override
 	@Deprecated
 	public void addChoosableFileFilter(FileFilter filter) {
 	

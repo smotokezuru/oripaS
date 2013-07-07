@@ -29,7 +29,8 @@ import oripa.geom.OriVertex;
 
 public class ExporterOBJ implements Exporter{
 
-    public boolean export(Doc doc, String filepath) throws Exception {
+    @Override
+	public boolean export(Doc doc, String filepath) throws Exception {
         FileWriter fw = new FileWriter(filepath);
         BufferedWriter bw = new BufferedWriter(fw);
 

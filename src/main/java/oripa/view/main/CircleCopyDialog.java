@@ -20,6 +20,7 @@ package oripa.view.main;
 
 import java.awt.Frame;
 import java.awt.Rectangle;
+
 import javax.swing.*;
 
 import oripa.ORIPA;
@@ -186,7 +187,7 @@ public class CircleCopyDialog extends JDialog {
             jTextFieldCX = new JTextField();
             jTextFieldCX.setBounds(new Rectangle(80, 5, 66, 21));
             jTextFieldCX.setText("0");
-            jTextFieldCX.setHorizontalAlignment(JTextField.RIGHT);
+            jTextFieldCX.setHorizontalAlignment(SwingConstants.RIGHT);
         }
         return jTextFieldCX;
     }
@@ -201,7 +202,7 @@ public class CircleCopyDialog extends JDialog {
             jTextFieldCY = new JTextField();
             jTextFieldCY.setBounds(new Rectangle(80, 30, 66, 21));
             jTextFieldCY.setText("0");
-            jTextFieldCY.setHorizontalAlignment(JTextField.RIGHT);
+            jTextFieldCY.setHorizontalAlignment(SwingConstants.RIGHT);
         }
         return jTextFieldCY;
     }
@@ -216,7 +217,7 @@ public class CircleCopyDialog extends JDialog {
             jTextFieldAngle = new JTextField();
             jTextFieldAngle.setBounds(new Rectangle(80, 55, 66, 21));
             jTextFieldAngle.setText("30");
-            jTextFieldAngle.setHorizontalAlignment(JTextField.RIGHT);
+            jTextFieldAngle.setHorizontalAlignment(SwingConstants.RIGHT);
         }
         return jTextFieldAngle;
     }
@@ -231,7 +232,7 @@ public class CircleCopyDialog extends JDialog {
             jTextFieldNum = new JTextField();
             jTextFieldNum.setBounds(new Rectangle(80, 80, 66, 21));
             jTextFieldNum.setText("1");
-            jTextFieldNum.setHorizontalAlignment(JTextField.RIGHT);
+            jTextFieldNum.setHorizontalAlignment(SwingConstants.RIGHT);
         }
         return jTextFieldNum;
     }

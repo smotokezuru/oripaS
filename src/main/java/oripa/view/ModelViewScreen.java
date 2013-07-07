@@ -248,14 +248,14 @@ public class ModelViewScreen extends JPanel
     @Override
     public void mouseDragged(MouseEvent e) {
         if (javax.swing.SwingUtilities.isRightMouseButton(e)) {
-            transX += (double) (e.getX() - preMousePoint.getX()) / scale;
-            transY += (double) (e.getY() - preMousePoint.getY()) / scale;
+            transX += (e.getX() - preMousePoint.getX()) / scale;
+            transY += (e.getY() - preMousePoint.getY()) / scale;
 
             preMousePoint = e.getPoint();
             updateAffineTransform();
             repaint();
         } else if (javax.swing.SwingUtilities.isLeftMouseButton(e)) {
-            rotateAngle += ((double) e.getX() - preMousePoint.getX()) / 100.0;
+            rotateAngle += (e.getX() - preMousePoint.getX()) / 100.0;
             preMousePoint = e.getPoint();
             updateAffineTransform();
             repaint();

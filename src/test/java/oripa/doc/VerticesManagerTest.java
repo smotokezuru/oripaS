@@ -22,6 +22,7 @@ public class VerticesManagerTest extends TestCase{
 	Doc doc = new Doc(paperSize);
 	double interval = doc.getCreasePattern().getVerticesManager().interval;
 
+	@Override
 	@Test
 	protected void setUp() throws Exception {
 		/**

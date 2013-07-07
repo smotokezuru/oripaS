@@ -21,14 +21,16 @@ package oripa.view;
 import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
 import com.sun.j3d.utils.behaviors.mouse.MouseZoom;
-import com.sun.j3d.utils.picking.PickCanvas;
 import com.sun.j3d.utils.picking.PickResult;
+import com.sun.j3d.utils.picking.PickTool;
 import com.sun.j3d.utils.picking.behaviors.PickMouseBehavior;
 import com.sun.j3d.utils.universe.SimpleUniverse;
+
 import java.awt.Color;
 import java.awt.GraphicsConfiguration;
 import java.awt.event.*;
 import java.util.ArrayList;
+
 import javax.media.j3d.*;
 import javax.vecmath.Color3f;
 import javax.vecmath.Point2d;
@@ -373,7 +375,7 @@ class SimplePicking extends PickMouseBehavior {
         this.setSchedulingBounds(bounds);
         System.out.println("tolerance" + getTolerance());
         this.setTolerance(0.0f);
-        setMode(PickCanvas.GEOMETRY);
+        setMode(PickTool.GEOMETRY);
     }
 
     public void setupCallback(SimplePickingCallback callback) {
