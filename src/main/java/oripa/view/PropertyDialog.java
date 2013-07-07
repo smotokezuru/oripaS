@@ -24,7 +24,6 @@ import java.awt.event.ComponentListener;
 
 import javax.swing.*;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 

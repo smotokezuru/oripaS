@@ -37,7 +37,6 @@ import javax.vecmath.Point2d;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.OriFace;

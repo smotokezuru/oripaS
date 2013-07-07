@@ -1,6 +1,5 @@
 package oripa.paint;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 

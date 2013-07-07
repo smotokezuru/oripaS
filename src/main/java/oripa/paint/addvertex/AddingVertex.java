@@ -2,7 +2,6 @@ package oripa.paint.addvertex;
 
 import java.awt.geom.Point2D;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.OriLine;

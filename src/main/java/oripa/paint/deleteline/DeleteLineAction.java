@@ -3,7 +3,6 @@ package oripa.paint.deleteline;
 import java.awt.Graphics2D;
 import java.util.Collection;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.OriLine;

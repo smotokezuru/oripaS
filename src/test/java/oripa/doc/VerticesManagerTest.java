@@ -9,7 +9,6 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.core.VerticesManager;
 import oripa.geom.OriLine;

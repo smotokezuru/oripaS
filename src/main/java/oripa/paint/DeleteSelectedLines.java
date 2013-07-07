@@ -3,7 +3,6 @@ package oripa.paint;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.viewsetting.main.ScreenUpdater;

@@ -40,7 +40,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.vecmath.Vector2d;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.OriFace;

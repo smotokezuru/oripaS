@@ -1,6 +1,5 @@
 package oripa.paint.vertical;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.GeomUtil;

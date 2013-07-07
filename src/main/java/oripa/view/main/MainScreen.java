@@ -49,7 +49,6 @@ import javax.swing.JPopupMenu;
 import javax.vecmath.Vector2d;
 
 import oripa.Config;
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.OriFace;

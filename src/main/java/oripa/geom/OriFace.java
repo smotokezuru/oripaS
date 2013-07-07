@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import javax.vecmath.Vector2d;
 import javax.vecmath.Vector3d;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.folder.Condition3;

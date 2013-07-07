@@ -4,12 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import oripa.ORIPA;
 import oripa.appstate.ApplicationState;
 import oripa.appstate.StateManager;
 import oripa.bind.EditOutlineActionWrapper;
 import oripa.bind.state.PaintBoundStateFactory;
-import oripa.doc.Doc;
 import oripa.paint.EditMode;
 import oripa.paint.Globals;
 import oripa.paint.addvertex.AddVertexAction;

@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JOptionPane;
 
-import oripa.ORIPA;
 import oripa.bind.state.ErrorListener;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;

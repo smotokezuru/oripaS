@@ -21,7 +21,6 @@ package oripa.doc.exporter;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.OriLine;

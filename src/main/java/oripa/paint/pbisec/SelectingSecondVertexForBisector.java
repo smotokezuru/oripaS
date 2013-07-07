@@ -2,7 +2,6 @@ package oripa.paint.pbisec;
 
 import javax.vecmath.Vector2d;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;

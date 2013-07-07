@@ -1,6 +1,5 @@
 package oripa.doc;
 
-import oripa.ORIPA;
 import oripa.doc.exporter.Exporter;
 import oripa.file.SavingAction;
 

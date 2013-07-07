@@ -6,7 +6,6 @@ import java.util.Collection;
 
 import javax.vecmath.Vector2d;
 
-import oripa.ORIPA;
 import oripa.doc.CalculationResource;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;

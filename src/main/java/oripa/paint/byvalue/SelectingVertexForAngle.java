@@ -4,7 +4,6 @@ import java.awt.geom.Point2D.Double;
 
 import javax.vecmath.Vector2d;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.paint.Globals;

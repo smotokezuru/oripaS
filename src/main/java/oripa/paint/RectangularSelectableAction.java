@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import oripa.Config;
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.OriLine;

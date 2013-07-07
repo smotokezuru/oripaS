@@ -2,7 +2,6 @@ package oripa.bind.copypaste;
 
 import java.awt.geom.AffineTransform;
 
-import oripa.ORIPA;
 import oripa.appstate.ApplicationState;
 import oripa.appstate.StateManager;
 import oripa.doc.Doc;

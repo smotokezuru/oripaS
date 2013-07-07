@@ -2,7 +2,6 @@ package oripa.paint.bisector;
 
 import java.awt.geom.Point2D.Double;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;

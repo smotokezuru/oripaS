@@ -2,7 +2,6 @@ package oripa.paint.line;
 
 import javax.vecmath.Vector2d;
 
-import oripa.ORIPA;
 import oripa.doc.Doc;
 import oripa.doc.DocHolder;
 import oripa.geom.GeomUtil;
