@@ -10,6 +10,8 @@ import java.util.LinkedList;
 
 import oripa.Config;
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.geom.RectangleClipper;
 
@@ -64,7 +66,8 @@ public abstract class RectangularSelectableAction extends GraphicMouseAction {
 					Math.min(startPoint.y, draggingPoint.y),
 					Math.max(startPoint.x, draggingPoint.x),
 					Math.max(startPoint.y, draggingPoint.y));
-			for (OriLine l : ORIPA.doc.creasePattern) {
+			Doc doc = DocHolder.getInstance().getDoc();
+			for (OriLine l : doc.creasePattern) {
 
 
 					if (clipper.clipTest(l)) {

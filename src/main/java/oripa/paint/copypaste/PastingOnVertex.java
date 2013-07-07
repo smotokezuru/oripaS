@@ -5,6 +5,8 @@ import java.awt.geom.Point2D.Double;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingVertex;
 import oripa.paint.geometry.GeometricOperation;
@@ -22,7 +24,8 @@ public class PastingOnVertex extends PickingVertex {
 	@Override
 	protected void undoAction(PaintContext context) {
 		context.setMissionCompleted(false);
-		ORIPA.doc.loadUndoInfo();
+		Doc doc = DocHolder.getInstance().getDoc();
+		doc.loadUndoInfo();
 	}
 
 
@@ -49,8 +52,8 @@ public class PastingOnVertex extends PickingVertex {
         Vector2d v = context.popVertex();
         
         if (context.getLineCount() > 0) {
-
-        	ORIPA.doc.pushUndoInfo();
+        	Doc doc = DocHolder.getInstance().getDoc();
+        	doc.pushUndoInfo();
 
         	Vector2d origin = OriginHolder.getInstance().getOrigin(context);
 
@@ -65,7 +68,7 @@ public class PastingOnVertex extends PickingVertex {
 //            	ORIPA.doc.addLine(shiftedLines.get(i));
 //            }
         	
-        	ORIPA.doc.pasteLines(shiftedLines);
+        	doc.pasteLines(shiftedLines);
             
             context.setMissionCompleted(true);
         }

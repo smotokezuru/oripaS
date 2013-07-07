@@ -49,6 +49,7 @@ import oripa.ORIPA;
 import oripa.bind.ButtonFactory;
 import oripa.bind.PaintActionButtonFactory;
 import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.doc.exporter.ExporterXML;
 import oripa.file.FileChooser;
 import oripa.file.FileChooserFactory;
@@ -229,7 +230,8 @@ public class MainFrame extends JFrame implements ActionListener,
 				.addActionListener(new java.awt.event.ActionListener() {
 					@Override
 					public void actionPerformed(java.awt.event.ActionEvent e) {
-						ORIPA.doc.resetSelectedOriLines();
+						Doc doc = DocHolder.getInstance().getDoc();
+						doc.resetSelectedOriLines();
 						mouseContext.clear(false);
 						mainScreen.repaint();
 					}
@@ -314,12 +316,13 @@ public class MainFrame extends JFrame implements ActionListener,
 
 	private void saveOpxFile(String filePath) {
 		ExporterXML exporter = new ExporterXML();
-		exporter.export(ORIPA.doc, filePath);
-		ORIPA.doc.setDataFilePath(filePath);
+		Doc doc = DocHolder.getInstance().getDoc();
+		exporter.export(doc, filePath);
+		doc.setDataFilePath(filePath);
 
 		updateMenu(filePath);
 
-		ORIPA.doc.clearChanged();
+		doc.clearChanged();
 	}
 
 	private void savePictureFile(Image cpImage, String filePath)
@@ -341,6 +344,7 @@ public class MainFrame extends JFrame implements ActionListener,
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Doc doc = DocHolder.getInstance().getDoc();
 		// Check the last opened files
 		for (int i = 0; i < Config.MRUFILE_NUM; i++) {
 			if (e.getSource() == MRUFilesMenuItem[i]) {
@@ -366,13 +370,13 @@ public class MainFrame extends JFrame implements ActionListener,
 			mainScreen.repaint();
 			updateTitleText();
 		} else if (e.getSource() == menuItemSave
-				&& !ORIPA.doc.dataFilePath.equals("")) {
-			saveOpxFile(ORIPA.doc.getDataFilePath());
+				&& !doc.dataFilePath.equals("")) {
+			saveOpxFile(doc.getDataFilePath());
 
 		} else if (e.getSource() == menuItemSaveAs
 				|| e.getSource() == menuItemSave) {
 
-			String path = saveFile(lastDirectory, ORIPA.doc.getDataFileName(),
+			String path = saveFile(lastDirectory, doc.getDataFileName(),
 					fileFilters);
 
 			updateMenu(path);
@@ -380,7 +384,7 @@ public class MainFrame extends JFrame implements ActionListener,
 
 		} else if (e.getSource() == menuItemSaveAsImage) {
 
-			saveFile(lastDirectory, ORIPA.doc.getDataFileName(),
+			saveFile(lastDirectory, doc.getDataFileName(),
 					new FileFilterEx[] { filterDB.getFilter("pict") });
 
 		} else if (e.getSource() == menuItemExportDXF) {
@@ -404,11 +408,11 @@ public class MainFrame extends JFrame implements ActionListener,
 			if (Globals.getMouseAction() != null) {
 				Globals.getMouseAction().undo(mouseContext);
 			} else {
-				ORIPA.doc.loadUndoInfo();
+				doc.loadUndoInfo();
 			}
 			mainScreen.repaint();
 		} else if (e.getSource() == menuItemClear) {
-			ORIPA.doc = new Doc(Constants.DEFAULT_PAPER_SIZE);
+			doc = new Doc(Constants.DEFAULT_PAPER_SIZE);
 			ORIPA.modelFrame.repaint();
 
 			ORIPA.modelFrame.setVisible(false);
@@ -433,7 +437,7 @@ public class MainFrame extends JFrame implements ActionListener,
 			dialog.setModal(true);
 			dialog.setVisible(true);
 		} else if (e.getSource() == menuItemRepeatCopy) {
-			if (ORIPA.doc.getSelectedLineNum() == 0) {
+			if (doc.getSelectedLineNum() == 0) {
 				JOptionPane.showMessageDialog(this, "Select target lines",
 						"ArrayCopy", JOptionPane.WARNING_MESSAGE);
 
@@ -441,7 +445,7 @@ public class MainFrame extends JFrame implements ActionListener,
 				arrayCopyDialog.setVisible(true);
 			}
 		} else if (e.getSource() == menuItemCircleCopy) {
-			if (ORIPA.doc.getSelectedLineNum() == 0) {
+			if (doc.getSelectedLineNum() == 0) {
 				JOptionPane.showMessageDialog(this, "Select target lines",
 						"ArrayCopy", JOptionPane.WARNING_MESSAGE);
 
@@ -453,11 +457,12 @@ public class MainFrame extends JFrame implements ActionListener,
 	}
 
 	public void updateTitleText() {
+		Doc doc = DocHolder.getInstance().getDoc();
 		String fileName;
-		if ((ORIPA.doc.dataFilePath).equals("")) {
+		if ((doc.dataFilePath).equals("")) {
 			fileName = ORIPA.res.getString("DefaultFileName");
 		} else {
-			fileName = ORIPA.doc.getDataFileName();
+			fileName = doc.getDataFileName();
 		}
 
 		setTitle(fileName + " - " + ORIPA.TITLE);
@@ -493,8 +498,9 @@ public class MainFrame extends JFrame implements ActionListener,
 
 	public void exportFile(String ext) {
 		if ("obj".equals(ext)) {
-			if (!ORIPA.doc.hasModel) {
-				if (!ORIPA.doc.buildOrigami(true)) {
+			Doc doc = DocHolder.getInstance().getDoc();
+			if (!doc.hasModel) {
+				if (!doc.buildOrigami(true)) {
 					JOptionPane.showConfirmDialog(null,
 							"Warning: Building a set of polygons from crease pattern "
 									+ "was failed.", "Warning",
@@ -580,7 +586,8 @@ public class MainFrame extends JFrame implements ActionListener,
 		}
 
 		if (path == null) {
-			path = ORIPA.doc.getDataFilePath();
+			Doc doc = DocHolder.getInstance().getDoc();
+			path = doc.getDataFilePath();
 		} else {
 			updateMenu(path);
 
@@ -655,8 +662,9 @@ public class MainFrame extends JFrame implements ActionListener,
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-
-		if (ORIPA.doc.isChanged()) {
+		
+		Doc doc = DocHolder.getInstance().getDoc();
+		if (doc.isChanged()) {
 			// TODO: confirm saving edited opx
 			int selected = JOptionPane
 					.showConfirmDialog(
@@ -665,7 +673,7 @@ public class MainFrame extends JFrame implements ActionListener,
 							"Comfirm to save", JOptionPane.YES_NO_OPTION);
 			if (selected == JOptionPane.YES_OPTION) {
 				String path = saveFile(fileHistory.getLastDirectory(),
-						ORIPA.doc.getDataFileName(), fileFilters);
+						doc.getDataFileName(), fileFilters);
 				if (path == null) {
 
 				}

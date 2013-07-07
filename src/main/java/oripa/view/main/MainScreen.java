@@ -51,6 +51,7 @@ import javax.vecmath.Vector2d;
 import oripa.Config;
 import oripa.ORIPA;
 import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriFace;
 import oripa.geom.OriLine;
 import oripa.geom.OriVertex;
@@ -109,17 +110,18 @@ public class MainScreen extends JPanel
 	}
 
 	public void drawModel(Graphics2D g2d) {
+		Doc doc = DocHolder.getInstance().getDoc();
 		if (Config.FOR_STUDY) {
 			if (bDrawFaceID) {
 				g2d.setColor(Color.BLACK);
-				for (OriFace face : ORIPA.doc.faces) {
+				for (OriFace face : doc.faces) {
 					g2d.drawString("" + face.tmpInt, (int) face.getCenter().x,
 							(int) face.getCenter().y);
 				}
 			}
 
 			g2d.setColor(new Color(255, 210, 220));
-			for (OriFace face : ORIPA.doc.faces) {
+			for (OriFace face : doc.faces) {
 				if (face.tmpInt2 == 0) {
 					g2d.setColor(Color.RED);
 					g2d.fill(face.preOutline);
@@ -143,13 +145,13 @@ public class MainScreen extends JPanel
 			g2d.setColor(Color.BLACK);
 
 
-			for (OriFace face : ORIPA.doc.faces) {
+			for (OriFace face : doc.faces) {
 				g2d.drawString("" + face.z_order, (int) face.getCenter().x,
 						(int) face.getCenter().y);
 			}
 
 			g2d.setColor(Color.RED);
-			for (OriVertex v : ORIPA.doc.vertices) {
+			for (OriVertex v : doc.vertices) {
 				if (v.hasProblem) {
 					g2d.fill(new Rectangle2D.Double(v.p.x - 8.0 / scale,
 							v.p.y - 8.0 / scale, 16.0 / scale, 16.0 / scale));
@@ -203,7 +205,8 @@ public class MainScreen extends JPanel
 	void drawVertexRectangles(Graphics2D g2d){
 		g2d.setColor(Color.BLACK);
 		final double vertexDrawSize = 2.0;
-		for (OriLine line : ORIPA.doc.creasePattern) {
+		Doc doc = DocHolder.getInstance().getDoc();
+		for (OriLine line : doc.creasePattern) {
 			if (!Globals.dispAuxLines && line.typeVal == OriLine.TYPE_NONE) {
 				continue;
 			}
@@ -229,7 +232,7 @@ public class MainScreen extends JPanel
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
+		Doc doc = DocHolder.getInstance().getDoc();
 		if (bufferImage == null) {
 			bufferImage = createImage(getWidth(), getHeight());
 			bufferg = (Graphics2D) bufferImage.getGraphics();
@@ -249,7 +252,7 @@ public class MainScreen extends JPanel
 
 		Graphics2D g2d = bufferg;
 
-		if (ORIPA.doc.hasModel) {
+		if (doc.hasModel) {
 			drawModel(g2d);
 		}
 		if (setting.isGridVisible()) {
@@ -262,7 +265,7 @@ public class MainScreen extends JPanel
 		g2d.setStroke(Config.STROKE_VALLEY);
 		g2d.setColor(Color.black);
 
-		drawLines(g2d, ORIPA.doc.creasePattern);
+		drawLines(g2d, doc.creasePattern);
 
 
 
@@ -281,11 +284,11 @@ public class MainScreen extends JPanel
 
 
 		if (Globals.bDispCrossLine) {
-			if (!ORIPA.doc.crossLines.isEmpty()) {
+			if (!doc.crossLines.isEmpty()) {
 				g2d.setStroke(Config.STROKE_TMP_OUTLINE);
 				g2d.setColor(Color.MAGENTA);
 
-				for (OriLine line : ORIPA.doc.crossLines) {
+				for (OriLine line : doc.crossLines) {
 					Vector2d v0 = line.p0;
 					Vector2d v1 = line.p1;
 
@@ -297,15 +300,15 @@ public class MainScreen extends JPanel
 
 		// Line that links the pair of unsetled faces
 		if (Config.FOR_STUDY) {
-			if (ORIPA.doc.overlapRelation != null) {
+			if (doc.overlapRelation != null) {
 				g2d.setStroke(Config.STROKE_RIDGE);
 				g2d.setColor(Color.MAGENTA);
-				int size = ORIPA.doc.faces.size();
+				int size = doc.faces.size();
 				for (int i = 0; i < size; i++) {
 					for (int j = i + 1; j < size; j++) {
-						if (ORIPA.doc.overlapRelation[i][j] == Doc.UNDEFINED) {
-							Vector2d v0 = ORIPA.doc.faces.get(i).getCenter();
-							Vector2d v1 = ORIPA.doc.faces.get(j).getCenter();
+						if (doc.overlapRelation[i][j] == Doc.UNDEFINED) {
+							Vector2d v0 = doc.faces.get(i).getCenter();
+							Vector2d v1 = doc.faces.get(j).getCenter();
 							g2d.draw(new Line2D.Double(v0.x, v0.y, v1.x, v1.y));
 
 						}
@@ -339,14 +342,15 @@ public class MainScreen extends JPanel
 
 
 	private void drawGridLine(Graphics2D g2d) {
+		Doc doc = DocHolder.getInstance().getDoc();
 		g2d.setColor(Color.LIGHT_GRAY);
 		g2d.setStroke(Config.STROKE_GRID);
 
 		int lineNum = Globals.gridDivNum;
-		double step = ORIPA.doc.size / lineNum;
+		double step = doc.size / lineNum;
 		for (int i = 1; i < lineNum; i++) {
-			g2d.draw(new Line2D.Double(step * i - ORIPA.doc.size / 2.0, -ORIPA.doc.size / 2.0, step * i - ORIPA.doc.size / 2.0, ORIPA.doc.size / 2.0));
-			g2d.draw(new Line2D.Double(-ORIPA.doc.size / 2.0, step * i - ORIPA.doc.size / 2.0, ORIPA.doc.size / 2.0, step * i - ORIPA.doc.size / 2.0));
+			g2d.draw(new Line2D.Double(step * i - doc.size / 2.0, -doc.size / 2.0, step * i - doc.size / 2.0, doc.size / 2.0));
+			g2d.draw(new Line2D.Double(-doc.size / 2.0, step * i - doc.size / 2.0, doc.size / 2.0, step * i - doc.size / 2.0));
 		}
 	}
 

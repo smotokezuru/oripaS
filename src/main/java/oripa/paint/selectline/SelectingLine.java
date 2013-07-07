@@ -1,6 +1,8 @@
 package oripa.paint.selectline;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingLine;
@@ -28,8 +30,8 @@ public class SelectingLine extends PickingLine {
 
 	@Override
 	protected void onResult(PaintContext context) {
-		
-		ORIPA.doc.pushUndoInfo();
+		Doc doc = DocHolder.getInstance().getDoc();
+		doc.pushUndoInfo();
 		
 		
 		OriLine line = context.peekLine();

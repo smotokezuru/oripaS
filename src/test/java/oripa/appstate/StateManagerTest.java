@@ -32,8 +32,7 @@ public class StateManagerTest {
 		
 		StateManager manager = StateManager.getInstance();
 		PaintBoundStateFactory stateFactory = new PaintBoundStateFactory();
-		
-		ORIPA.doc = new Doc();
+		//Doc doc = new Doc();
 		
 		manager.push(stateFactory.create(
 				null, StringID.DIRECT_V_ID));

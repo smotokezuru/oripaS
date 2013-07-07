@@ -40,6 +40,8 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollBar;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.doc.exporter.Exporter;
 import oripa.doc.exporter.ExporterDXF;
 import oripa.doc.exporter.ExporterOBJ2;
@@ -122,11 +124,12 @@ implements ActionListener, AdjustmentListener, Observer{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    	Doc doc = DocHolder.getInstance().getDoc();
         if (e.getSource() == menuItemFlip) {
-            ORIPA.doc.filpAll();
+            doc.filpAll();
             screen.repaint();
         } else if (e.getSource() == menuItemSlideFaces) {
-            ORIPA.doc.setFacesOutline(menuItemSlideFaces.isSelected());
+            doc.setFacesOutline(menuItemSlideFaces.isSelected());
             screen.repaint();
         } else if (e.getSource() == menuItemCrossLine) {
             Globals.bDispCrossLine = menuItemCrossLine.isSelected();
@@ -190,13 +193,14 @@ implements ActionListener, AdjustmentListener, Observer{
                 if (!filePath.endsWith("." + ext)) {
                     filePath += "." + ext;
                 }
+                Doc doc = DocHolder.getInstance().getDoc();
                 switch (ext) {
                     case "dxf":
-                        ExporterDXF.exportModel(ORIPA.doc, filePath);
+                        ExporterDXF.exportModel(doc, filePath);
                         break;
                     case "obj":
                         Exporter exporter = new ExporterOBJ2();
-                        exporter.export(ORIPA.doc, filePath);
+                        exporter.export(doc, filePath);
                         break;
                 }
 

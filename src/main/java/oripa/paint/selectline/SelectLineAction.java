@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.EditMode;
 import oripa.paint.Globals;
@@ -26,7 +28,8 @@ public class SelectLineAction extends RectangularSelectableAction {
 		
 	@Override
 	public void undo(PaintContext context) {
-		ORIPA.doc.loadUndoInfo();
+		Doc doc = DocHolder.getInstance().getDoc();
+		doc.loadUndoInfo();
 
 		recover(context);
 	}
@@ -35,13 +38,13 @@ public class SelectLineAction extends RectangularSelectableAction {
 	@Override
 	public void recover(PaintContext context) {
 		context.clear(false);
-
-		Collection<OriLine> docLines = ORIPA.doc.creasePattern;
+		Doc doc = DocHolder.getInstance().getDoc();
+		Collection<OriLine> docLines = doc.creasePattern;
 		if(docLines == null){
 			return;
 		}
 		
-		for(OriLine line : ORIPA.doc.creasePattern){
+		for(OriLine line : doc.creasePattern){
 			if(line.selected){
 				context.pushLine(line);
 			}
@@ -52,10 +55,10 @@ public class SelectLineAction extends RectangularSelectableAction {
 	@Override
 	protected void afterRectangularSelection(Collection<OriLine> selectedLines,
 			PaintContext context) {
-
+		Doc doc = DocHolder.getInstance().getDoc();
 		if(selectedLines.isEmpty() == false){
 
-			ORIPA.doc.pushUndoInfo();
+			doc.pushUndoInfo();
 
 			for(OriLine line : selectedLines){
 				if (line.typeVal == OriLine.TYPE_CUT) {

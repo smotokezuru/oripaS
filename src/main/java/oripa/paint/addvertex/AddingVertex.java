@@ -3,6 +3,8 @@ package oripa.paint.addvertex;
 import java.awt.geom.Point2D;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingVertex;
@@ -44,17 +46,10 @@ public class AddingVertex extends PickingVertex {
 	protected void onResult(PaintContext context) {
 
 		if(context.getVertexCount() > 0){
-			
-//            Object[] line_vertex = new Object[2];
-//            if (pickPointOnLine(context.mousePoint, line_vertex)) {
-//                ORIPA.doc.pushUndoInfo();
-//                if (!ORIPA.doc.addVertexOnLine((OriLine) line_vertex[0], (Vector2d) line_vertex[1])) {
-//                    ORIPA.doc.loadUndoInfo();
-//                }
-//            }
-          ORIPA.doc.pushUndoInfo();
-          if (!ORIPA.doc.addVertexOnLine(context.popLine(), context.popVertex())) {
-              ORIPA.doc.loadUndoInfo();
+		  Doc doc = DocHolder.getInstance().getDoc();
+          doc.pushUndoInfo();
+          if (!doc.addVertexOnLine(context.popLine(), context.popVertex())) {
+              doc.loadUndoInfo();
           }
 
 		}

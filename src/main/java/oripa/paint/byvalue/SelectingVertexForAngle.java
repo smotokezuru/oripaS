@@ -5,6 +5,8 @@ import java.awt.geom.Point2D.Double;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.Globals;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingVertex;
@@ -25,11 +27,11 @@ public class SelectingVertexForAngle extends PickingVertex{
 	@Override
 	protected boolean onAct(PaintContext context, Double currentPoint,
 			boolean doSpecial) {
-		
+		Doc doc = DocHolder.getInstance().getDoc();
 		context.setMissionCompleted(false);
 		
 		if(doingFirstAction){
-			ORIPA.doc.cacheUndoInfo();
+			doc.cacheUndoInfo();
 			doingFirstAction = false;
 		}
 		

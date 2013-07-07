@@ -9,6 +9,8 @@ import java.awt.geom.Point2D;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.EditMode;
 import oripa.paint.GraphicMouseAction;
@@ -40,7 +42,8 @@ public class PasteAction extends GraphicMouseAction {
 
 		context.startPasting();
 
-		for(OriLine line : ORIPA.doc.creasePattern){
+		Doc doc = DocHolder.getInstance().getDoc();
+		for(OriLine line : doc.creasePattern){
 			if(line.selected){
 				context.pushLine(line);
 			}

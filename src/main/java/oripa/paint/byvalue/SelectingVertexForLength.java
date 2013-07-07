@@ -3,6 +3,8 @@ package oripa.paint.byvalue;
 import java.awt.geom.Point2D.Double;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.GeomUtil;
 import oripa.paint.Globals;
 import oripa.paint.PaintContext;
@@ -24,11 +26,11 @@ public class SelectingVertexForLength extends PickingVertex{
 	@Override
 	protected boolean onAct(PaintContext context, Double currentPoint,
 			boolean doSpecial) {
-		
+		Doc doc = DocHolder.getInstance().getDoc();
 		context.setMissionCompleted(false);
 		
 		if(doingFirstAction){
-			ORIPA.doc.cacheUndoInfo();
+			doc.cacheUndoInfo();
 			doingFirstAction = false;
 		}
 		

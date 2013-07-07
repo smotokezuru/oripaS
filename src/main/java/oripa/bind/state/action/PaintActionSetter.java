@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.Globals;
 import oripa.paint.GraphicMouseAction;
 import oripa.paint.PaintContext;
@@ -34,7 +36,8 @@ public class PaintActionSetter implements ActionListener{
 		Globals.mouseAction = mouseAction;
 
 		if(mouseAction.needSelect() == false){
-			ORIPA.doc.resetSelectedOriLines();
+			Doc doc = DocHolder.getInstance().getDoc();
+			doc.resetSelectedOriLines();
 		}
 				
 		ScreenUpdater screenUpdater = ScreenUpdater.getInstance();

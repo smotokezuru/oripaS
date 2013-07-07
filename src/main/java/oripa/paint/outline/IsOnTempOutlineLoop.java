@@ -5,6 +5,8 @@ import java.util.Collection;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.GeomUtil;
 import oripa.geom.Line;
 import oripa.paint.PairLoop;
@@ -23,7 +25,8 @@ public class IsOnTempOutlineLoop implements PairLoop.Block<Vector2d> {
 	
 	@Override
 	public boolean yield(Vector2d p0, Vector2d p1) {
-        if (GeomUtil.DistancePointToLine(target, new Line(p0, new Vector2d(p1.x - p0.x, p1.y - p0.y))) < ORIPA.doc.size * 0.001) {
+		Doc doc = DocHolder.getInstance().getDoc();
+        if (GeomUtil.DistancePointToLine(target, new Line(p0, new Vector2d(p1.x - p0.x, p1.y - p0.y))) < doc.size * 0.001) {
             return false;
         }
 

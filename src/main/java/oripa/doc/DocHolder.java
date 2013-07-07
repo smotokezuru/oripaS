@@ -3,18 +3,12 @@ package oripa.doc;
 import oripa.resource.Constants;
 
 public class DocHolder {
-	private static DocHolder instance = null;
-	
+	private static DocHolder instance = new DocHolder();
+	private Doc doc;	
+
 	public static DocHolder getInstance(){
-		if(instance == null){
-			instance = new DocHolder();
-		}
-		
 		return instance;
 	}
-//-----------------------------------------------------
-	
-	private Doc doc;
 	
 	private DocHolder(){
 		doc = new Doc(Constants.DEFAULT_PAPER_SIZE);
@@ -22,5 +16,9 @@ public class DocHolder {
 	
 	public Doc getDoc(){
 		return doc;
+	}
+	
+	public void setDoc(Doc value){
+		doc = value;
 	}
 }

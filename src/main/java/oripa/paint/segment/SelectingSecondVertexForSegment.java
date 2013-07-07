@@ -1,6 +1,8 @@
 package oripa.paint.segment;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.Globals;
 import oripa.paint.PaintContext;
@@ -15,7 +17,7 @@ public class SelectingSecondVertexForSegment extends PickingVertex{
 
 	@Override
 	protected void onResult(PaintContext context) {
-		
+		Doc doc = DocHolder.getInstance().getDoc();
 		if(context.getVertexCount() != 2){
 			throw new RuntimeException();
 		}
@@ -23,8 +25,8 @@ public class SelectingSecondVertexForSegment extends PickingVertex{
 		OriLine line = new OriLine(context.getVertex(0),
 				context.getVertex(1), Globals.inputLineType);
 
-		ORIPA.doc.pushUndoInfo();
-        ORIPA.doc.addLine(line);
+		doc.pushUndoInfo();
+        doc.addLine(line);
 
         context.clear(false);
 	}

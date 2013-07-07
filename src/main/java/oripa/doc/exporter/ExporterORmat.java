@@ -23,6 +23,7 @@ import java.io.FileWriter;
 
 import oripa.ORIPA;
 import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriFace;
 import oripa.geom.OriHalfedge;
 import oripa.geom.OriVertex;
@@ -49,7 +50,8 @@ public class ExporterORmat implements Exporter{
             id++;
         }
 
-        for (OriFace face : ORIPA.doc.faces) {
+        Doc oripadoc = DocHolder.getInstance().getDoc();
+        for (OriFace face : oripadoc.faces) {
             bw.write("f");
             for (OriHalfedge he : face.halfedges) {
                 bw.write(" " + he.vertex.tmpInt);

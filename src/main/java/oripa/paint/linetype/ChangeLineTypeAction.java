@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.EditMode;
 import oripa.paint.PaintContext;
@@ -23,12 +25,13 @@ public class ChangeLineTypeAction extends RectangularSelectableAction {
 	protected void afterRectangularSelection(Collection<OriLine> selectedLines,
 			PaintContext context) {
 		if(selectedLines.isEmpty() == false){
-			ORIPA.doc.pushUndoInfo();
+			Doc doc = DocHolder.getInstance().getDoc();
+			doc.pushUndoInfo();
 
 			UIPanelSettingDB setting = UIPanelSettingDB.getInstance();
 			for (OriLine l : selectedLines) {
 				// Change line type
-				ORIPA.doc.alterLineType(l, setting.getTypeFrom(), setting.getTypeTo());
+				doc.alterLineType(l, setting.getTypeFrom(), setting.getTypeTo());
 				//ORIPA.doc.alterLineType(l, setting.getLineTypeFromIndex(), setting.getLineTypeToIndex());
 			}
 

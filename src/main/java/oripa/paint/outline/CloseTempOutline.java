@@ -6,6 +6,8 @@ import java.util.Collection;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.PairLoop;
 
@@ -15,13 +17,14 @@ public class CloseTempOutline {
 
 		// Delete the current outline
 		ArrayList<OriLine> outlines = new ArrayList<>();
-		for (OriLine line : ORIPA.doc.creasePattern) {
+		Doc doc = DocHolder.getInstance().getDoc();
+		for (OriLine line : doc.creasePattern) {
 			if (line.typeVal == OriLine.TYPE_CUT) {
 				outlines.add(line);
 			}
 		}
 		for (OriLine line : outlines) {
-			ORIPA.doc.creasePattern.remove(line);
+			doc.creasePattern.remove(line);
 		}
 
 		// Update the contour line
@@ -29,9 +32,10 @@ public class CloseTempOutline {
 			@Override
 			public boolean yield(Vector2d v1, Vector2d v2) {
 				OriLine line;
+				Doc doc = DocHolder.getInstance().getDoc();
 
 				line = new OriLine(v1, v2, OriLine.TYPE_CUT);
-				ORIPA.doc.addLine(line);
+				doc.addLine(line);
 
 				return true;
 			}
@@ -41,7 +45,7 @@ public class CloseTempOutline {
 		// To delete a segment out of the contour
 		while (true) {
 			boolean bDeleteLine = false;
-			for (OriLine line : ORIPA.doc.creasePattern) {
+			for (OriLine line : doc.creasePattern) {
 				if (line.typeVal == OriLine.TYPE_CUT) {
 					continue;
 				}
@@ -49,14 +53,14 @@ public class CloseTempOutline {
 				Vector2d OnPoint1 = isOnTmpOutlineLoop(outlinevertices, line.p1);
 
 				if (OnPoint0 != null && OnPoint0 == OnPoint1) {
-					ORIPA.doc.removeLine(line);
+					doc.removeLine(line);
 					bDeleteLine = true;
 					break;
 				}
 
 				if ((OnPoint0 == null && isOutsideOfTmpOutlineLoop(outlinevertices, line.p0))
 						|| (OnPoint1 == null && isOutsideOfTmpOutlineLoop(outlinevertices, line.p1))) {
-					ORIPA.doc.removeLine(line);
+					doc.removeLine(line);
 					bDeleteLine = true;
 					break;
 				}

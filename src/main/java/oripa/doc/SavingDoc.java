@@ -14,9 +14,10 @@ public class SavingDoc implements SavingAction{
 	
 	@Override
 	public boolean save(String path) {
+		Doc doc = DocHolder.getInstance().getDoc();
 		boolean success = false;
 		try {
-			success = exporter.export(ORIPA.doc, path);
+			success = exporter.export(doc, path);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

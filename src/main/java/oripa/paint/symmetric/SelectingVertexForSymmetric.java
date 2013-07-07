@@ -5,6 +5,8 @@ import java.awt.geom.Point2D.Double;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingVertex;
 
@@ -26,9 +28,9 @@ public class SelectingVertexForSymmetric extends PickingVertex{
 	@Override
 	protected boolean onAct(PaintContext context, Double currentPoint,
 			boolean doSpecial) {
-		
+		Doc doc = DocHolder.getInstance().getDoc();
 		if(doingFirstAction){
-			ORIPA.doc.cacheUndoInfo();
+			doc.cacheUndoInfo();
 			doingFirstAction = false;
 		}
 		
@@ -47,17 +49,18 @@ public class SelectingVertexForSymmetric extends PickingVertex{
 
 	@Override
 	public void onResult(PaintContext context) {
-		ORIPA.doc.pushCachedUndoInfo();
+		Doc doc = DocHolder.getInstance().getDoc();
+		doc.pushCachedUndoInfo();
 		
 		Vector2d first = context.getVertex(0);
 		Vector2d second = context.getVertex(1);
 		Vector2d third = context.getVertex(2);
 		
         if (doSpecial) {
-            ORIPA.doc.addSymmetricLineAutoWalk(
+            doc.addSymmetricLineAutoWalk(
             		first, second, third, 0, first);
         } else {
-            ORIPA.doc.addSymmetricLine(first, second, third);
+            doc.addSymmetricLine(first, second, third);
         }
 
         doingFirstAction = true;

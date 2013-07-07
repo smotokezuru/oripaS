@@ -19,10 +19,12 @@
 package oripa.geom;
 
 import java.util.ArrayList;
+
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
 import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.folder.Condition3;
 import oripa.folder.Condition4;
 
@@ -112,7 +114,7 @@ public class SubFace {
 	}
 
 	private void sort(int index) {
-
+		Doc doc = DocHolder.getInstance().getDoc();
 		for (OriFace f : faces) {
 			if (f.alreadyStacked) {
 				continue;
@@ -121,7 +123,7 @@ public class SubFace {
 			boolean isOK = true;
 
 			for (Integer ii : f.condition2s) {
-				if (!ORIPA.doc.faces.get(ii.intValue()).alreadyStacked) {
+				if (!doc.faces.get(ii.intValue()).alreadyStacked) {
 					isOK = false;
 					break;
 				}
@@ -170,10 +172,10 @@ public class SubFace {
 	}
 
 	private boolean checkForSortLocally3(OriFace face) {
-
+		Doc doc = DocHolder.getInstance().getDoc();
 		for (Condition3 cond : face.condition3s) {
-			if (ORIPA.doc.faces.get(cond.lower).alreadyStacked
-					&& !ORIPA.doc.faces.get(cond.upper).alreadyStacked) {
+			if (doc.faces.get(cond.lower).alreadyStacked
+					&& !doc.faces.get(cond.upper).alreadyStacked) {
 				return false;
 			}
 		}
@@ -189,18 +191,18 @@ public class SubFace {
 		for (Condition4 cond : face.condition4s) {
 
 			if (face.tmpInt == cond.upper2
-					&& ORIPA.doc.faces.get(cond.lower2).alreadyStacked
-					&& ORIPA.doc.faces.get(cond.lower1).alreadyStacked
-					&& !ORIPA.doc.faces.get(cond.upper1).alreadyStacked
-					&& ORIPA.doc.faces.get(cond.lower2).tmpInt2 < ORIPA.doc.faces
+					&& doc.faces.get(cond.lower2).alreadyStacked
+					&& doc.faces.get(cond.lower1).alreadyStacked
+					&& !doc.faces.get(cond.upper1).alreadyStacked
+					&& doc.faces.get(cond.lower2).tmpInt2 < doc.faces
 							.get(cond.lower1).tmpInt2) {
 				return false;
 			}
 			if (face.tmpInt == cond.upper1
-					&& ORIPA.doc.faces.get(cond.lower2).alreadyStacked
-					&& ORIPA.doc.faces.get(cond.lower1).alreadyStacked
-					&& !ORIPA.doc.faces.get(cond.upper2).alreadyStacked
-					&& ORIPA.doc.faces.get(cond.lower1).tmpInt2 < ORIPA.doc.faces
+					&& doc.faces.get(cond.lower2).alreadyStacked
+					&& doc.faces.get(cond.lower1).alreadyStacked
+					&& !doc.faces.get(cond.upper2).alreadyStacked
+					&& doc.faces.get(cond.lower1).tmpInt2 < doc.faces
 							.get(cond.lower2).tmpInt2) {
 				return false;
 			}

@@ -6,6 +6,8 @@ import java.util.Collection;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.Globals;
 import oripa.paint.PaintContext;
@@ -90,8 +92,8 @@ public class NearestVertexFinder {
 
 		Point2D.Double currentPoint = context.getLogicalMousePoint();
 		
-		
-		Collection<Collection<Vector2d>> vertices = ORIPA.doc.getVerticesArea(
+		Doc doc = DocHolder.getInstance().getDoc();
+		Collection<Collection<Vector2d>> vertices = doc.getVerticesArea(
 				currentPoint.x, currentPoint.y, distance);	
 	
 		for(Collection<Vector2d> locals : vertices){

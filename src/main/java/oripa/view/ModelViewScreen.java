@@ -43,6 +43,8 @@ import javax.vecmath.Vector2d;
 
 import oripa.Config;
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriFace;
 import oripa.geom.OriHalfedge;
 import oripa.geom.OriLine;
@@ -85,13 +87,14 @@ public class ModelViewScreen extends JPanel
 
     public void resetViewMatrix() {
         rotateAngle = 0;
-        if (!ORIPA.doc.hasModel) {
+        Doc doc = DocHolder.getInstance().getDoc();
+        if (!doc.hasModel) {
             scale = 1.0;
         } else {
             // Align the center of the model, combined scale
             Vector2d maxV = new Vector2d(-Double.MAX_VALUE, -Double.MAX_VALUE);
             Vector2d minV = new Vector2d(Double.MAX_VALUE, Double.MAX_VALUE);
-            for (OriFace face : ORIPA.doc.faces) {
+            for (OriFace face : doc.faces) {
                 for (OriHalfedge he : face.halfedges) {
                     maxV.x = Math.max(maxV.x, he.vertex.p.x);
                     maxV.y = Math.max(maxV.y, he.vertex.p.y);
@@ -108,7 +111,8 @@ public class ModelViewScreen extends JPanel
     }
 
     public void drawModel(Graphics2D g2d) {
-        for (OriFace face : ORIPA.doc.sortedFaces) {
+    	Doc doc = DocHolder.getInstance().getDoc();
+        for (OriFace face : doc.sortedFaces) {
             if (Globals.modelDispMode == Constants.ModelDispMode.FILL_COLOR) {
                 if (face.faceFront) {
                     g2d.setColor(new Color(255, 200, 200));
@@ -179,8 +183,8 @@ public class ModelViewScreen extends JPanel
 
         Graphics2D g2d = bufferg;
 
-
-        if (ORIPA.doc.hasModel) {
+        Doc doc = DocHolder.getInstance().getDoc();
+        if (doc.hasModel) {
             g2d.setStroke(Config.STROKE_CUT);
             if (Globals.modelDispMode == Constants.ModelDispMode.FILL_ALPHA) {
                 g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.1f));
@@ -220,7 +224,8 @@ public class ModelViewScreen extends JPanel
         crossLine.p0.add(moveVec);
         crossLine.p1.add(moveVec);
 
-        ORIPA.doc.setCrossLine(crossLine);
+        Doc doc = DocHolder.getInstance().getDoc();
+        doc.setCrossLine(crossLine);
         repaint();
         ORIPA.mainFrame.repaint();
     }

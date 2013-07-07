@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.Collection;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.EditMode;
 import oripa.paint.PaintContext;
@@ -33,9 +35,10 @@ public class DeleteLineAction extends RectangularSelectableAction {
 			PaintContext context) {
 
 		if(selectedLines.isEmpty() == false){
-			ORIPA.doc.pushUndoInfo();
+			Doc doc = DocHolder.getInstance().getDoc();
+			doc.pushUndoInfo();
 			for (OriLine l : selectedLines) {
-				ORIPA.doc.removeLine(l);
+				doc.removeLine(l);
 			}
 		}		
 	}

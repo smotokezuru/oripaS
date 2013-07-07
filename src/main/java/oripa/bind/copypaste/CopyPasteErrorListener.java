@@ -7,12 +7,15 @@ import javax.swing.JOptionPane;
 
 import oripa.ORIPA;
 import oripa.bind.state.ErrorListener;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 
 public class CopyPasteErrorListener implements ErrorListener {
 
 	@Override
 	public boolean isError(ActionEvent e) {
-		return (ORIPA.doc.getSelectedLineNum() == 0);
+		Doc doc = DocHolder.getInstance().getDoc();
+		return (doc.getSelectedLineNum() == 0);
 	}
 
 	@Override

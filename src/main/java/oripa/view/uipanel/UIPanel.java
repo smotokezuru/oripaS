@@ -55,6 +55,8 @@ import oripa.bind.PaintActionButtonFactory;
 import oripa.bind.binder.BinderInterface;
 import oripa.bind.binder.ViewChangeBinder;
 import oripa.bind.state.action.PaintActionSetter;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.doc.TypeForChange;
 import oripa.file.ImageResourceLoader;
 import oripa.folder.Folder;
@@ -632,8 +634,9 @@ implements ActionListener, PropertyChangeListener, Observer {
 
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				ORIPA.doc.buildOrigami3(false);
-				ORIPA.doc.checkPatternValidity();
+				Doc doc = DocHolder.getInstance().getDoc();
+				doc.buildOrigami3(false);
+				doc.checkPatternValidity();
 				ORIPA.checkFrame.setVisible(true);
 				ORIPA.checkFrame.repaint();
 			}
@@ -676,16 +679,17 @@ implements ActionListener, PropertyChangeListener, Observer {
 			screenUpdater.updateScreen();			
 		} else if (ae.getSource() == resetButton) {
 		} else if (ae.getSource() == buildButton) {
+			Doc doc = DocHolder.getInstance().getDoc();
 			boolean buildOK = false;
-			ORIPA.doc.sortedFaces.clear();
-			if (ORIPA.doc.buildOrigami3(false)) {
+			doc.sortedFaces.clear();
+			if (doc.buildOrigami3(false)) {
 				buildOK = true;
 			} else {
 				if (JOptionPane.showConfirmDialog(
 						ORIPA.mainFrame, resources.getString(ResourceKey.WARNING, StringID.Warning.FOLD_FAILED_DUPLICATION_ID), 
 						"Failed", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE)
 						== JOptionPane.YES_OPTION) {
-					if (ORIPA.doc.buildOrigami3(false)) {
+					if (doc.buildOrigami3(false)) {
 						buildOK = true;
 					} else {
 						JOptionPane.showMessageDialog(
@@ -696,7 +700,7 @@ implements ActionListener, PropertyChangeListener, Observer {
 			}
 
 			if (buildOK) {
-				Folder folder = new Folder(ORIPA.doc);
+				Folder folder = new Folder(doc);
 				int answerNum = folder.fold();
 				System.out.println("RenderFrame");
 				if (answerNum != 0) {
@@ -706,7 +710,7 @@ implements ActionListener, PropertyChangeListener, Observer {
 				}
 
 			} else {
-				ORIPA.doc.foldWithoutLineType();
+				doc.foldWithoutLineType();
 			}
 
 			ModelFrameSettingDB modelSetting = ModelFrameSettingDB.getInstance();

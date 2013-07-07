@@ -1,6 +1,8 @@
 package oripa.paint.linetype;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingLine;
 import oripa.viewsetting.uipanel.UIPanelSettingDB;
@@ -20,17 +22,16 @@ public class SelectingLineForLineType extends PickingLine {
 	
 	@Override
 	protected void undoAction(PaintContext context) {
-		// TODO Auto-generated method stub
 		super.undoAction(context);
 	}
 
 	@Override
 	protected void onResult(PaintContext context) {
-		// TODO Auto-generated method stub
-        ORIPA.doc.pushUndoInfo();
+		Doc doc = DocHolder.getInstance().getDoc();
+        doc.pushUndoInfo();
 
     	UIPanelSettingDB setting = UIPanelSettingDB.getInstance();
-        ORIPA.doc.alterLineType(context.peekLine(),  setting.getTypeFrom(), setting.getTypeTo());
+        doc.alterLineType(context.peekLine(),  setting.getTypeFrom(), setting.getTypeTo());
 
         context.clear(false);
 	}

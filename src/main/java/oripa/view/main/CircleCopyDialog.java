@@ -24,6 +24,8 @@ import java.awt.Rectangle;
 import javax.swing.*;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 
 public class CircleCopyDialog extends JDialog {
     private static final long serialVersionUID = 1L;
@@ -146,7 +148,8 @@ public class CircleCopyDialog extends JDialog {
                             );            
                         
                     } else {
-                        ORIPA.doc.CircleCopy(m_cx, m_cy, m_angleDeg, m_num);
+                    	Doc doc = DocHolder.getInstance().getDoc();
+                        doc.CircleCopy(m_cx, m_cy, m_angleDeg, m_num);
                         ORIPA.mainFrame.repaint();
                         setVisible(false);
                     }

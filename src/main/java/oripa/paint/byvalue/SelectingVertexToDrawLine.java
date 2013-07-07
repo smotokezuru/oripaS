@@ -3,6 +3,8 @@ package oripa.paint.byvalue;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.GeomUtil;
 import oripa.geom.OriLine;
 import oripa.paint.Globals;
@@ -30,9 +32,9 @@ public class SelectingVertexToDrawLine extends PickingVertex {
 
 			if (length > 0) {
 				OriLine vl = GeomUtil.getLineByValue(vertex, length, -angle, Globals.inputLineType);
-
-				ORIPA.doc.pushUndoInfo();
-				ORIPA.doc.addLine(vl);
+				Doc doc = DocHolder.getInstance().getDoc();
+				doc.pushUndoInfo();
+				doc.addLine(vl);
 			}
 		} 
 		catch (Exception ex) {

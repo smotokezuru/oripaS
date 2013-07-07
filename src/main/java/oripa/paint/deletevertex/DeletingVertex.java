@@ -1,6 +1,8 @@
 package oripa.paint.deletevertex;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingVertex;
 
@@ -15,10 +17,9 @@ public class DeletingVertex extends PickingVertex {
 	protected void onResult(PaintContext context) {
 
 		if(context.getVertexCount() > 0){
-			ORIPA.doc.pushUndoInfo();
-			
-			ORIPA.doc.removeVertex(context.popVertex());
-
+			Doc doc = DocHolder.getInstance().getDoc();
+			doc.pushUndoInfo();
+			doc.removeVertex(context.popVertex());
 		}
 		
 		context.clear(false);

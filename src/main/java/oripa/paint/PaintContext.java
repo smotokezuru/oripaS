@@ -8,6 +8,8 @@ import java.util.Stack;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 
 public class PaintContext {
@@ -78,11 +80,12 @@ public class PaintContext {
 	public Collection<Vector2d> updateGrids(int gridDivNum){
 		gridPoints = new ArrayList<>();
 		
-        double step = ORIPA.doc.size / gridDivNum;
+		Doc doc = DocHolder.getInstance().getDoc();
+        double step = doc.size / gridDivNum;
         for (int ix = 0; ix < Globals.gridDivNum + 1; ix++) {
             for (int iy = 0; iy < gridDivNum + 1; iy++) {
-                double x = -ORIPA.doc.size / 2 + step * ix;
-                double y = -ORIPA.doc.size / 2 + step * iy;
+                double x = -doc.size / 2 + step * ix;
+                double y = -doc.size / 2 + step * iy;
                 
                 gridPoints.add(new Vector2d(x, y));
             }

@@ -3,6 +3,8 @@ package oripa.paint.pbisec;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingVertex;
 
@@ -23,8 +25,9 @@ public class SelectingSecondVertexForBisector extends PickingVertex{
         p0 = context.getVertex(0);
         p1 = context.getVertex(1);
 
-        ORIPA.doc.pushUndoInfo();
-        ORIPA.doc.addPBisector(p0, p1);
+        Doc doc = DocHolder.getInstance().getDoc();
+        doc.pushUndoInfo();
+        doc.addPBisector(p0, p1);
 
         context.clear(false);
 	}

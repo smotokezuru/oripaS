@@ -5,6 +5,8 @@ import java.awt.geom.AffineTransform;
 import oripa.ORIPA;
 import oripa.appstate.ApplicationState;
 import oripa.appstate.StateManager;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.EditMode;
 import oripa.paint.PaintContext;
 import oripa.paint.copypaste.CopyAndPasteAction;
@@ -27,7 +29,8 @@ public class CopyAndPasteActionWrapper extends CopyAndPasteAction {
 		super.recover(context);
 		
 		if(isCut){
-			ORIPA.doc.deleteSelectedLines();
+			Doc doc = DocHolder.getInstance().getDoc();
+			doc.deleteSelectedLines();
 		}
 	}
 	

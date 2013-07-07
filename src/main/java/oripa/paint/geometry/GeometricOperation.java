@@ -8,6 +8,8 @@ import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
 import oripa.doc.CalculationResource;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.GeomUtil;
 import oripa.geom.OriLine;
 import oripa.paint.PaintContext;
@@ -30,7 +32,8 @@ public class GeometricOperation {
 		double minDistance = Double.MAX_VALUE;
 		OriLine bestLine = null;
 
-		for (OriLine line : ORIPA.doc.creasePattern) {
+		Doc doc = DocHolder.getInstance().getDoc();
+		for (OriLine line : doc.creasePattern) {
 			double dist = GeomUtil.DistancePointToSegment(new Vector2d(p.x, p.y), line.p0, line.p1);
 			if (dist < minDistance) {
 				minDistance = dist;

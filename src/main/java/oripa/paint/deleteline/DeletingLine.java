@@ -1,6 +1,8 @@
 package oripa.paint.deleteline;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingLine;
 
@@ -21,8 +23,9 @@ public class DeletingLine extends PickingLine {
 	protected void onResult(PaintContext context) {
 
 		if(context.getLineCount() > 0){
-			ORIPA.doc.pushUndoInfo();
-			ORIPA.doc.removeLine(context.popLine());
+			Doc doc = DocHolder.getInstance().getDoc();
+			doc.pushUndoInfo();
+			doc.removeLine(context.popLine());
 		}
 		
 		context.clear(false);

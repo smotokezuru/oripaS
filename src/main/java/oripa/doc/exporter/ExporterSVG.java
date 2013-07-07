@@ -8,6 +8,7 @@ import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
 import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriFace;
 import oripa.geom.OriHalfedge;
 import oripa.geom.OriLine;
@@ -51,7 +52,8 @@ public class ExporterSVG implements Exporter{
             Vector2d maxV = new Vector2d(-Double.MAX_VALUE, -Double.MAX_VALUE);
             Vector2d minV = new Vector2d(Double.MAX_VALUE, Double.MAX_VALUE);
             Vector2d modelCenter = new Vector2d();
-            for (OriFace face : ORIPA.doc.faces) {
+            Doc oripadoc = DocHolder.getInstance().getDoc();
+            for (OriFace face : oripadoc.faces) {
                 for (OriHalfedge he : face.halfedges) {
                     maxV.x = Math.max(maxV.x, he.vertex.p.x);
                     maxV.y = Math.max(maxV.y, he.vertex.p.y);
@@ -65,19 +67,19 @@ public class ExporterSVG implements Exporter{
             bw.write(gradient);
             
             ArrayList<OriFace> sortedFaces = new ArrayList<>();
-            boolean [] isSorted = new boolean[ORIPA.doc.faces.size()];
-            for (int i = 0; i < ORIPA.doc.faces.size(); i++) {
-                for (int j = 0; j < ORIPA.doc.overlapRelation.length; j++) {
+            boolean [] isSorted = new boolean[oripadoc.faces.size()];
+            for (int i = 0; i < oripadoc.faces.size(); i++) {
+                for (int j = 0; j < oripadoc.overlapRelation.length; j++) {
                     int numberOf2 = 0;
                     if(!isSorted[j]){
                         for (int k = 0; k < isSorted.length; k++) {
-                            if ((!isSorted[k]) && ORIPA.doc.overlapRelation[j][k]==2) {
+                            if ((!isSorted[k]) && oripadoc.overlapRelation[j][k]==2) {
                                 numberOf2++;
                             }
                         }
                         if(numberOf2==0){
                             isSorted[j] = true;
-                            sortedFaces.add(ORIPA.doc.faces.get(j));
+                            sortedFaces.add(oripadoc.faces.get(j));
                             break;
                         }                        
                     }

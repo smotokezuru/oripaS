@@ -146,7 +146,8 @@ public class Doc {
 	}
 
 	public String getDataFileName(){
-		File file = new File(ORIPA.doc.dataFilePath);
+		Doc doc = DocHolder.getInstance().getDoc();
+		File file = new File(doc.dataFilePath);
 		String fileName = file.getName();
 
 		return fileName;
@@ -245,7 +246,8 @@ public class Doc {
 	public void filpAll() {
 		Vector2d maxV = new Vector2d(-Double.MAX_VALUE, -Double.MAX_VALUE);
 		Vector2d minV = new Vector2d(Double.MAX_VALUE, Double.MAX_VALUE);
-		for (OriFace face : ORIPA.doc.faces) {
+		Doc doc = DocHolder.getInstance().getDoc();
+		for (OriFace face : doc.faces) {
 			face.z_order = -face.z_order;
 			for (OriHalfedge he : face.halfedges) {
 				maxV.x = Math.max(maxV.x, he.vertex.p.x);
@@ -257,13 +259,13 @@ public class Doc {
 
 		double centerX = (maxV.x + minV.x) / 2;
 
-		for (OriFace face : ORIPA.doc.faces) {
+		for (OriFace face : doc.faces) {
 			for (OriHalfedge he : face.halfedges) {
 				he.positionForDisplay.x = 2 * centerX - he.positionForDisplay.x;
 			}
 		}
 
-		for (OriFace face : ORIPA.doc.faces) {
+		for (OriFace face : doc.faces) {
 			face.faceFront = !face.faceFront;
 			face.setOutline();
 		}

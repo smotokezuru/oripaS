@@ -6,6 +6,8 @@ import java.util.Collection;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.GeomUtil;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingVertex;
@@ -33,7 +35,7 @@ public class SelectingVertexForOutline extends PickingVertex {
 
 	@Override
 	protected void onResult(PaintContext context) {
-		
+		Doc doc = DocHolder.getInstance().getDoc();
 		Vector2d v = context.popVertex();
 		
         boolean bClose = false;
@@ -48,7 +50,7 @@ public class SelectingVertexForOutline extends PickingVertex {
             if (context.getVertexCount() > 2) {
             	// finish editing
             	
-            	ORIPA.doc.pushUndoInfo();
+            	doc.pushUndoInfo();
                 closeTmpOutline(context.getVertices());
 
                 context.clear(false);

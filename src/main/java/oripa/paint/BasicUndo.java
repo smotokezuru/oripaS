@@ -1,6 +1,8 @@
 package oripa.paint;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 
 public class BasicUndo {
 
@@ -14,12 +16,12 @@ public class BasicUndo {
 	 */
 	public static ActionState undo(ActionState state, PaintContext context){
 		ActionState next = state;
-		
+		Doc doc = DocHolder.getInstance().getDoc();
 		if(context.getLineCount() > 0 || context.getVertexCount() > 0){
 			next = state.undo(context);
 		}
 		else {
-			ORIPA.doc.loadUndoInfo();
+			doc.loadUndoInfo();
 		}
 		
 		return next;

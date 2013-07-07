@@ -24,6 +24,8 @@ import java.awt.Rectangle;
 import javax.swing.*;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 
 public class RepeatCopyDialog extends JDialog {
 
@@ -230,13 +232,14 @@ public class RepeatCopyDialog extends JDialog {
 
                     m_bFillSheet = jCheckBoxFill.isSelected();
 
+                    Doc doc = DocHolder.getInstance().getDoc();
                     if (!m_bFillSheet && (m_row == 0 || m_col == 0)) {
                         JOptionPane.showMessageDialog(
                                 ORIPA.mainFrame, "Specify non-Zero value to Low and Col.", "ArrayCopy",
                                 JOptionPane.INFORMATION_MESSAGE);
 
                     } else {
-                        ORIPA.doc.ArrayCopy(m_row, m_col, m_interX, m_interY, m_bFillSheet);
+                        doc.ArrayCopy(m_row, m_col, m_interX, m_interY, m_bFillSheet);
                         ORIPA.mainFrame.repaint();
                         setVisible(false);
                     }

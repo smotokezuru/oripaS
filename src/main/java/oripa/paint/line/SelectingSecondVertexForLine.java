@@ -3,6 +3,8 @@ package oripa.paint.line;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.GeomUtil;
 import oripa.geom.OriLine;
 import oripa.paint.Globals;
@@ -19,7 +21,7 @@ public class SelectingSecondVertexForLine extends PickingVertex{
 
 	@Override
 	protected void onResult(PaintContext context) {
-
+		Doc doc = DocHolder.getInstance().getDoc();
 		if(context.getVertexCount() != 2){
 			throw new RuntimeException();
 		}
@@ -33,9 +35,9 @@ public class SelectingSecondVertexForLine extends PickingVertex{
 		dir.scale(Constants.DEFAULT_PAPER_SIZE * 8);
 		OriLine line = new OriLine(p0.x - dir.x, p0.y - dir.y,
 				p0.x + dir.x, p0.y + dir.y, Globals.inputLineType);
-		if (GeomUtil.clipLine(line, ORIPA.doc.size / 2)) {
-			ORIPA.doc.pushUndoInfo();
-			ORIPA.doc.addLine(line);
+		if (GeomUtil.clipLine(line, doc.size / 2)) {
+			doc.pushUndoInfo();
+			doc.addLine(line);
 		}
 
 		context.clear(false);

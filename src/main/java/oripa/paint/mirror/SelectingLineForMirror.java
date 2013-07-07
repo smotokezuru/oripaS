@@ -3,6 +3,8 @@ package oripa.paint.mirror;
 import java.awt.geom.Point2D;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriLine;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingLine;
@@ -34,9 +36,10 @@ public class SelectingLineForMirror extends PickingLine {
 	@Override
 	protected boolean onAct(PaintContext context, Point2D.Double currentPoint,
 			boolean doSpecial) {
+		Doc doc = DocHolder.getInstance().getDoc();
 		if(doingFirstAction){
 			doingFirstAction = false;
-			ORIPA.doc.cacheUndoInfo();
+			doc.cacheUndoInfo();
 			
 		}
 
@@ -77,10 +80,10 @@ public class SelectingLineForMirror extends PickingLine {
 
 	@Override
 	protected void onResult(PaintContext context) {
-		// TODO Auto-generated method stub
-        ORIPA.doc.pushCachedUndoInfo();
+		Doc doc = DocHolder.getInstance().getDoc();
+        doc.pushCachedUndoInfo();
 
-		ORIPA.doc.mirrorCopyBy(axis, context.getLines());
+		doc.mirrorCopyBy(axis, context.getLines());
 
         doingFirstAction = true;
         context.clear(true);

@@ -41,6 +41,8 @@ import javax.swing.JPanel;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriFace;
 import oripa.geom.TriangleFace;
 import oripa.geom.TriangleVertex;
@@ -289,20 +291,21 @@ public class RenderScreen2 extends JPanel
     }
 
     public void drawOrigami() {
-        if (!ORIPA.doc.bFolded) {
+    	Doc doc = DocHolder.getInstance().getDoc();
+        if (!doc.bFolded) {
             return;
         }
         long time0 = System.currentTimeMillis();
 
-        Vector2d center = new Vector2d((ORIPA.doc.foldedBBoxLT.x + ORIPA.doc.foldedBBoxRB.x) / 2,
-                (ORIPA.doc.foldedBBoxLT.y + ORIPA.doc.foldedBBoxRB.y) / 2);
+        Vector2d center = new Vector2d((doc.foldedBBoxLT.x + doc.foldedBBoxRB.x) / 2,
+                (doc.foldedBBoxLT.y + doc.foldedBBoxRB.y) / 2);
         double localScale = Math.min(
-                BUFFERW / (ORIPA.doc.foldedBBoxRB.x - ORIPA.doc.foldedBBoxLT.x),
-                BUFFERH / (ORIPA.doc.foldedBBoxRB.y - ORIPA.doc.foldedBBoxLT.y)) * 0.95;
+                BUFFERW / (doc.foldedBBoxRB.x - doc.foldedBBoxLT.x),
+                BUFFERH / (doc.foldedBBoxRB.y - doc.foldedBBoxLT.y)) * 0.95;
         double angle = m_rotAngle * Math.PI / 180;
         localScale *= m_scale;
 
-        for (OriFace face : ORIPA.doc.faces) {
+        for (OriFace face : doc.faces) {
 
             face.trianglateAndSetColor(m_bUseColor, isM_bFaceOrderFlip());
 
@@ -373,7 +376,7 @@ public class RenderScreen2 extends JPanel
                             if (f_id == -1 && f_id2 != -1) {
                                 cnt++;
                             } else {
-                                if (f_id2 != -1 && ORIPA.doc.overlapRelation[f_id][f_id2] == renderFace) {
+                                if (f_id2 != -1 && doc.overlapRelation[f_id][f_id2] == renderFace) {
                                     cnt++;
                                 }
                             }
@@ -481,7 +484,8 @@ public class RenderScreen2 extends JPanel
 
                 int renderFace = isM_bFaceOrderFlip() ? oripa.doc.Doc.UPPER : oripa.doc.Doc.LOWER;
 
-                if (zbuf[p] == -1 || ORIPA.doc.overlapRelation[zbuf[p]][id] == renderFace) {
+                Doc doc = DocHolder.getInstance().getDoc();
+                if (zbuf[p] == -1 || doc.overlapRelation[zbuf[p]][id] == renderFace) {
 
                     int tr = r >> 16;
                     int tg = g >> 16;

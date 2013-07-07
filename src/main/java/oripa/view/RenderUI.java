@@ -21,9 +21,12 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ItemEvent;
 import java.io.File;
+
 import javax.swing.*;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.doc.exporter.Exporter;
 import oripa.doc.exporter.ExporterORmat;
 import oripa.doc.exporter.ExporterSVG;
@@ -79,8 +82,9 @@ public class RenderUI extends JPanel {
     }
 
     public void updateLabel() {
-        jLabel.setText("Folded model [" + (ORIPA.doc.currentORmatIndex + 1) + "/"
-                + ORIPA.doc.overlapRelations.size() + "]");
+    	Doc doc = DocHolder.getInstance().getDoc();
+        jLabel.setText("Folded model [" + (doc.currentORmatIndex + 1) + "/"
+                + doc.overlapRelations.size() + "]");
 
     }
 
@@ -99,7 +103,8 @@ public class RenderUI extends JPanel {
 
                 @Override
                 public void actionPerformed(java.awt.event.ActionEvent e) {
-                    ORIPA.doc.setNextORMat();
+                	Doc doc = DocHolder.getInstance().getDoc();
+                    doc.setNextORMat();
                     screen.redrawOrigami();
                     updateLabel();
                 }
@@ -123,7 +128,8 @@ public class RenderUI extends JPanel {
 
                 @Override
                 public void actionPerformed(java.awt.event.ActionEvent e) {
-                    ORIPA.doc.setPrevORMat();
+                	Doc doc = DocHolder.getInstance().getDoc();
+                    doc.setPrevORMat();
                     screen.redrawOrigami();
                     updateLabel();
                 }
@@ -269,6 +275,7 @@ public class RenderUI extends JPanel {
                     fileChooser.addChoosableFileFilter(f2);
                     fileChooser.setAcceptAllFileFilterUsed(false);
                     fileChooser.setFileFilter(f2);
+                    Doc doc = DocHolder.getInstance().getDoc();
                     if (JFileChooser.APPROVE_OPTION == fileChooser.showSaveDialog(ORIPA.mainFrame)) {
                         try {
                             String filePath = fileChooser.getSelectedFile().getPath();
@@ -287,12 +294,13 @@ public class RenderUI extends JPanel {
                                     filePath += "." + ext1;
                                 }
                                 Exporter exporter = new ExporterORmat();
-                                exporter.export(ORIPA.doc, filePath);
+                                
+                                exporter.export(doc, filePath);
                             } else if (fileChooser.getFileFilter().equals(f2)) {
                                 if (!filePath.endsWith("." + ext2)) {
                                     filePath += "." + ext2;
                                 }
-                                ExporterSVG.exportModel(ORIPA.doc, filePath);
+                                ExporterSVG.exportModel(doc, filePath);
                             }
 
                         } catch (Exception ex) {

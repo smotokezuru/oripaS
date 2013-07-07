@@ -38,6 +38,7 @@ import javax.vecmath.Vector2d;
 import oripa.Config;
 import oripa.ORIPA;
 import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriFace;
 import oripa.geom.OriLine;
 import oripa.geom.OriVertex;
@@ -76,13 +77,14 @@ public class RenderScreenForCheck extends JPanel
     }
 
     public void drawModel(Graphics2D g2d) {
-        for (OriFace face : ORIPA.doc.faces) {
+    	Doc doc = DocHolder.getInstance().getDoc();
+        for (OriFace face : doc.faces) {
             g2d.setColor(new Color(255, 210, 210));
             g2d.fill(face.preOutline);
         }
 
         g2d.setColor(Color.RED);
-        for (OriVertex v : ORIPA.doc.vertices) {
+        for (OriVertex v : doc.vertices) {
             if (v.hasProblem) {
                 g2d.fill(new Rectangle2D.Double(v.preP.x - 8.0 / scale, 
                         v.preP.y - 8.0 / scale, 16.0 / scale, 16.0 / scale));
@@ -91,14 +93,14 @@ public class RenderScreenForCheck extends JPanel
 
         if (bDrawFaceID) {
             g2d.setColor(Color.BLACK);
-            for (OriFace face : ORIPA.doc.faces) {
+            for (OriFace face : doc.faces) {
                 g2d.drawString("" + face.tmpInt, (int) face.getCenter().x, (int) face.getCenter().y);
             }
         }
 
         if (Config.FOR_STUDY) {
             g2d.setColor(new Color(255, 210, 220));
-            for (OriFace face : ORIPA.doc.faces) {
+            for (OriFace face : doc.faces) {
                 if (face.tmpInt2 == 0) {
                     g2d.setColor(Color.RED);
                     g2d.fill(face.preOutline);
@@ -120,13 +122,13 @@ public class RenderScreenForCheck extends JPanel
             }
 
             g2d.setColor(Color.BLACK);
-            for (OriFace face : ORIPA.doc.faces) {
+            for (OriFace face : doc.faces) {
                 g2d.drawString("" + face.z_order, (int) face.getCenter().x, 
                         (int) face.getCenter().y);
             }
 
             g2d.setColor(Color.RED);
-            for (OriVertex v : ORIPA.doc.vertices) {
+            for (OriVertex v : doc.vertices) {
                 if (v.hasProblem) {
                     g2d.fill(new Rectangle2D.Double(v.p.x - 8.0 / scale, 
                             v.p.y - 8.0 / scale, 16.0 / scale, 16.0 / scale));
@@ -165,7 +167,8 @@ public class RenderScreenForCheck extends JPanel
 
         g2d.setStroke(Config.STROKE_VALLEY);
         g2d.setColor(Color.black);
-        for (OriLine line : ORIPA.doc.creasePattern) {
+        Doc doc = DocHolder.getInstance().getDoc();
+        for (OriLine line : doc.creasePattern) {
             switch (line.typeVal) {
                 case OriLine.TYPE_NONE:
                     if (!Globals.dispAuxLines) {
@@ -200,7 +203,7 @@ public class RenderScreenForCheck extends JPanel
 
 
         // Drawing of the vertices
-        for (OriVertex v : ORIPA.doc.vertices) {
+        for (OriVertex v : doc.vertices) {
             double vertexDrawSize = 2.0;
             g2d.setColor(Color.BLACK);
 
@@ -218,15 +221,15 @@ public class RenderScreenForCheck extends JPanel
 
         // Line connecting the pair of unsetled faces
         if (Config.FOR_STUDY) {
-            if (ORIPA.doc.overlapRelation != null) {
+            if (doc.overlapRelation != null) {
                 g2d.setStroke(Config.STROKE_RIDGE);
                 g2d.setColor(Color.MAGENTA);
-                int size = ORIPA.doc.faces.size();
+                int size = doc.faces.size();
                 for (int i = 0; i < size; i++) {
                     for (int j = i + 1; j < size; j++) {
-                        if (ORIPA.doc.overlapRelation[i][j] == Doc.UNDEFINED) {
-                            Vector2d v0 = ORIPA.doc.faces.get(i).getCenter();
-                            Vector2d v1 = ORIPA.doc.faces.get(j).getCenter();
+                        if (doc.overlapRelation[i][j] == Doc.UNDEFINED) {
+                            Vector2d v0 = doc.faces.get(i).getCenter();
+                            Vector2d v1 = doc.faces.get(j).getCenter();
                             g2d.draw(new Line2D.Double(v0.x, v0.y, v1.x, v1.y));
 
                         }

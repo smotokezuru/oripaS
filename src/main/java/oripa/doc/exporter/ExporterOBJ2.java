@@ -23,6 +23,7 @@ import java.io.FileWriter;
 
 import oripa.ORIPA;
 import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriEdge;
 import oripa.geom.OriFace;
 import oripa.geom.OriHalfedge;
@@ -50,7 +51,8 @@ public class ExporterOBJ2 implements Exporter{
             bw.write("vt " + (vertex.preP.x + doc.size / 2) / doc.size + " " + (vertex.preP.y + doc.size / 2) / doc.size + "\n");
         }
 
-        for (OriFace face : ORIPA.doc.faces) {
+        Doc oripadoc = DocHolder.getInstance().getDoc();
+        for (OriFace face : oripadoc.faces) {
             bw.write("f");
             for (OriHalfedge he : face.halfedges) {
                 bw.write(" " + he.vertex.tmpInt + "/" + he.vertex.tmpInt);
@@ -77,7 +79,8 @@ public class ExporterOBJ2 implements Exporter{
             id++;
         }
 
-        for (OriFace face : ORIPA.doc.faces) {
+        Doc oripadoc = DocHolder.getInstance().getDoc();
+        for (OriFace face : oripadoc.faces) {
             bw.write("f");
             for (OriHalfedge he : face.halfedges) {
                 bw.write(" " + he.vertex.tmpInt);
@@ -85,7 +88,7 @@ public class ExporterOBJ2 implements Exporter{
             bw.write("\n");
         }
 
-        for (OriEdge edge : ORIPA.doc.edges) {
+        for (OriEdge edge : oripadoc.edges) {
             bw.write("e " + edge.sv.tmpInt + " " + edge.ev.tmpInt + " " + edge.type + " 180\n");
         }
 

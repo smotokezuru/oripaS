@@ -7,6 +7,8 @@ import java.awt.geom.Point2D.Double;
 import javax.vecmath.Vector2d;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.EditMode;
 import oripa.paint.GraphicMouseAction;
 import oripa.paint.PaintContext;
@@ -43,7 +45,8 @@ public class CopyAndPasteAction extends GraphicMouseAction {
 
 	@Override
 	public void undo(PaintContext context) {
-		ORIPA.doc.loadUndoInfo();
+		Doc doc = DocHolder.getInstance().getDoc();
+		doc.loadUndoInfo();
 	}
 	
 	

@@ -42,8 +42,7 @@ public class VerticesManagerTest extends TestCase{
 		doc.addLine(new OriLine(interval, 0, interval, paperSize, OriLine.TYPE_RIDGE));
 		doc.addLine(new OriLine(interval * 2, 0, interval * 2, paperSize, OriLine.TYPE_RIDGE));
 		
-
-		ORIPA.doc = doc;
+		DocHolder.getInstance().setDoc(doc);
 		
 	}
 

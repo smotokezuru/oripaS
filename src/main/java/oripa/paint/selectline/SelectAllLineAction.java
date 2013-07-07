@@ -1,6 +1,8 @@
 package oripa.paint.selectline;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 
 public class SelectAllLineAction extends SelectLineAction {
@@ -11,7 +13,8 @@ public class SelectAllLineAction extends SelectLineAction {
 
 	@Override
 	public void recover(PaintContext context) {
-		ORIPA.doc.selectAllOriLines();
+		Doc doc = DocHolder.getInstance().getDoc();
+		doc.selectAllOriLines();
 		super.recover(context);
 	}
 	

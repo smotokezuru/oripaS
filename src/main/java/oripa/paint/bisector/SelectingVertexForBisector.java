@@ -3,6 +3,8 @@ package oripa.paint.bisector;
 import java.awt.geom.Point2D.Double;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingVertex;
 
@@ -25,9 +27,9 @@ public class SelectingVertexForBisector extends PickingVertex{
 	@Override
 	protected boolean onAct(PaintContext context, Double currentPoint,
 			boolean doSpecial) {
-		
+		Doc doc = DocHolder.getInstance().getDoc();
 		if(doingFirstAction){
-			ORIPA.doc.cacheUndoInfo();
+			doc.cacheUndoInfo();
 			doingFirstAction = false;
 		}
 		

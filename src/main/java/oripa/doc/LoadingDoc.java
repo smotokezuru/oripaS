@@ -20,9 +20,9 @@ public class LoadingDoc implements oripa.file.LoadingAction{
 
 		doc = loader.load(path);
 		if (doc != null) {
-			ORIPA.doc = doc;
+			DocHolder.getInstance().setDoc(doc);
 			if(path != ""){
-				ORIPA.doc.setDataFilePath(path);
+				doc.setDataFilePath(path);
 			}
 		}
 		success = (doc != null);

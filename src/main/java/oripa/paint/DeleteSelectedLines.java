@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.viewsetting.main.ScreenUpdater;
 
 public class DeleteSelectedLines implements ActionListener {
@@ -13,8 +15,9 @@ public class DeleteSelectedLines implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ORIPA.doc.pushUndoInfo();
-		ORIPA.doc.deleteSelectedLines();
+		Doc doc = DocHolder.getInstance().getDoc();
+		doc.pushUndoInfo();
+		doc.deleteSelectedLines();
 
 		if(context.isPasting() == false){
 			context.clear(false);

@@ -38,6 +38,8 @@ import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.geom.OriFace;
 import oripa.geom.OriHalfedge;
 
@@ -96,7 +98,8 @@ public class ModelViewScreen3D extends Canvas3D implements MouseListener, MouseM
         int fCount = 0;
         Point2d maxPoint = new Point2d(-Double.MAX_VALUE, -Double.MAX_VALUE);
         Point2d minPoint = new Point2d(Double.MAX_VALUE, Double.MAX_VALUE);
-        for (OriFace face : ORIPA.doc.sortedFaces) {
+        Doc doc = DocHolder.getInstance().getDoc();
+        for (OriFace face : doc.sortedFaces) {
             for (OriHalfedge he : face.halfedges) {
                 maxPoint.x = Math.max(maxPoint.x, he.positionForDisplay.x);
                 maxPoint.y = Math.max(maxPoint.y, he.positionForDisplay.y);
@@ -118,11 +121,11 @@ public class ModelViewScreen3D extends Canvas3D implements MouseListener, MouseM
                 LineAttributes.PATTERN_SOLID, // Line type
                 false); // Whether to handle anti-aliasing
 
-        for (OriFace face : ORIPA.doc.sortedFaces) {
+        for (OriFace face : doc.sortedFaces) {
             J3DFace j3dFace = new J3DFace(face);
             faces.add(j3dFace);
 
-            double z = (fCount - ORIPA.doc.sortedFaces.size() * 0.5) * (-10);
+            double z = (fCount - doc.sortedFaces.size() * 0.5) * (-10);
             OriHalfedge startHe = face.halfedges.get(0);
             Point3d[] p = new Point3d[3];
             p[0] = new Point3d(startHe.positionForDisplay.x, startHe.positionForDisplay.y, z);

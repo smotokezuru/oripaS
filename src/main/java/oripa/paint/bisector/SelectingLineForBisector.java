@@ -1,6 +1,8 @@
 package oripa.paint.bisector;
 
 import oripa.ORIPA;
+import oripa.doc.Doc;
+import oripa.doc.DocHolder;
 import oripa.paint.PaintContext;
 import oripa.paint.PickingLine;
 
@@ -30,9 +32,10 @@ public class SelectingLineForBisector extends PickingLine {
 			throw new RuntimeException();
 		}
 		
-        ORIPA.doc.pushCachedUndoInfo();
+		Doc doc = DocHolder.getInstance().getDoc();
+        doc.pushCachedUndoInfo();
 
-        ORIPA.doc.addBisectorLine(
+        doc.addBisectorLine(
         		context.getVertex(0), context.getVertex(1), context.getVertex(2), 
         		context.getLine(0));
 

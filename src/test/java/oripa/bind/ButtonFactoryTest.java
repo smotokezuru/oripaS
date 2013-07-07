@@ -22,7 +22,7 @@ public class ButtonFactoryTest {
 
 		JPanel parent = new JPanel();
 		
-		ORIPA.doc = new Doc();
+		//ORIPA.doc = new Doc();
 
 		// line input buttons
 		assertButtonCreated(parent, StringID.DIRECT_V_ID, false);
