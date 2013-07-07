@@ -81,7 +81,7 @@ public class MainFrame extends JFrame implements ActionListener,
 	private MainScreenSettingDB screenSetting = MainScreenSettingDB.getInstance();
 	private PaintContext mouseContext = PaintContext.getInstance();
 
-	CreasePatternPanel creasePatternPanel;
+	private CreasePatternPanel creasePatternPanel;
 	private JMenu menuFile = new JMenu(
 			ORIPA.res.getString(StringID.Main.FILE_ID));
 	private JMenu menuEdit = new JMenu(ORIPA.res.getString("Edit"));
@@ -103,7 +103,7 @@ public class MainFrame extends JFrame implements ActionListener,
 	// -----------------------------------------------------------------------------------------------------------
 	// Create paint button
 
-	ButtonFactory buttonFactory = new PaintActionButtonFactory();
+	private ButtonFactory buttonFactory = new PaintActionButtonFactory();
 	
 	/**
 	 * For changing outline
@@ -153,7 +153,7 @@ public class MainFrame extends JFrame implements ActionListener,
 	private RepeatCopyDialog arrayCopyDialog;
 	private CircleCopyDialog circleCopyDialog;
 	public static JLabel hintLabel = new JLabel();
-	public ControlPanel uiPanel;
+	private ControlPanel uiPanel;
 
 	private FileHistory fileHistory = new FileHistory(Config.MRUFILE_NUM);
 
@@ -494,7 +494,7 @@ public class MainFrame extends JFrame implements ActionListener,
 
 	}
 
-	public void exportFile(String ext) {
+	private void exportFile(String ext) {
 		if ("obj".equals(ext)) {
 			Doc doc = DocHolder.getInstance().getDoc();
 			if (!doc.hasModel) {
@@ -542,7 +542,7 @@ public class MainFrame extends JFrame implements ActionListener,
 		menuFile.add(menuItemExit);
 	}
 
-	public void updateMenu(String filePath) {
+	private void updateMenu(String filePath) {
 
 		if (filterDB.getLoadableFilterOf(filePath) == null) {
 			return;

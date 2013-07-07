@@ -76,10 +76,10 @@ public class RenderScreen2 extends JPanel
     static private double m_scale = 0.8;
     static private boolean m_bDrawEdges = true;
     private Image renderImage;
-    double rotateAngle;
-    double scale;
-    double transX;
-    double transY;
+    private double rotateAngle;
+    private double scale;
+    private double transX;
+    private double transY;
     private Point2D preMousePoint;
     private AffineTransform affineTransform;
     private BufferedImage textureImage = null;
@@ -168,7 +168,7 @@ public class RenderScreen2 extends JPanel
         return y * BUFFERW + x;
     }
 
-    public static void clear() {
+    private static void clear() {
         for (int i = 0; i < BUFFERW * BUFFERH; i++) {
             pbuf[i] = 0xffffffff;
             zbuf[i] = -1;

@@ -108,7 +108,7 @@ public class CreasePatternPanel extends JPanel
 		preSize = getSize();
 	}
 
-	public void drawModel(Graphics2D g2d) {
+	private void drawModel(Graphics2D g2d) {
 		Doc doc = DocHolder.getInstance().getDoc();
 		if (Config.FOR_STUDY) {
 			if (bDrawFaceID) {
@@ -201,7 +201,7 @@ public class CreasePatternPanel extends JPanel
 
 	}
 
-	void drawVertexRectangles(Graphics2D g2d){
+	private void drawVertexRectangles(Graphics2D g2d){
 		g2d.setColor(Color.BLACK);
 		final double vertexDrawSize = 2.0;
 		Doc doc = DocHolder.getInstance().getDoc();

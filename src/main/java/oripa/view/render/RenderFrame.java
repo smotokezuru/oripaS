@@ -36,11 +36,11 @@ public class RenderFrame extends JFrame implements ActionListener, Observer {
 
 	private RenderFrameSettingDB setting = RenderFrameSettingDB.getInstance();
 
-	RenderScreen2 screen;
-    RenderUI ui;
-    public JLabel hintLabel;
+	private RenderScreen2 screen;
+	private RenderUI ui;
+	private JLabel hintLabel;
 
-    public RenderFrame() {
+	public RenderFrame() {
     	setting.addObserver(this);
     	
         setTitle("Folded Origami");
