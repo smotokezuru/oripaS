@@ -2,7 +2,9 @@
 /bin
 /target
 /build
+/out
 /.gradle
+*.iws
 
 # Package Files #
 *.jar
